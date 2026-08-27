@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { FormInput, FormSelect, FormTextarea } from '@/components/form-input'
 import { cadastroEstoqueSchema } from '@/lib/validations'
-import { supabase, isSupabaseConfigured, getSupabaseError } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase'
 import { useState, useEffect } from 'react'
 import { CheckCircle, Loader, AlertCircle, ArrowRight, MapPin, ShoppingBag } from 'lucide-react'
 
@@ -45,11 +45,7 @@ export default function CadastrarEstoqueContent() {
   const [loading, setLoading] = useState(false)
   const [successData, setSuccessData] = useState<SuccessData | null>(null)
   const [errorMsg, setErrorMsg] = useState('')
-  const [supabaseReady, setSupabaseReady] = useState(false)
-
-  useEffect(() => {
-    setSupabaseReady(isSupabaseConfigured())
-  }, [])
+  const [supabaseReady, setSupabaseReady] = useState(!!supabase)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -73,7 +69,7 @@ export default function CadastrarEstoqueContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!supabaseReady) {
+    if (!supabase) {
       setErrorMsg('Erro: Supabase ainda não foi configurado')
       return
     }
@@ -84,10 +80,6 @@ export default function CadastrarEstoqueContent() {
 
     try {
       const validated = cadastroEstoqueSchema.parse(formData)
-
-      if (!supabase) {
-        throw new Error(getSupabaseError())
-      }
 
       const { data, error } = await (supabase as any).rpc('cadastrar_empresa_com_produto', {
         p_nome_empresa: validated.nomeEmpresa,
