@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+:root {
+  --color-giro-grafite: 16 20 24;
+  --color-giro-vermelho: 245 27 43;
+  --color-giro-turquesa: 16 191 181;
+  --color-giro-branco: 255 255 255;
+  --color-giro-claro: 246 248 249;
+  --color-giro-texto: 21 26 32;
+  --color-giro-texto-sec: 91 100 112;
+  --color-giro-borda: 229 231 235;
+}
+
 * {
   margin: 0;
   padding: 0;

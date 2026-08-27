@@ -9,14 +9,14 @@ export default {
     extend: {
       colors: {
         giro: {
-          grafite: '#101418',
-          vermelho: '#F51B2B',
-          turquesa: '#10BFB5',
-          branco: '#FFFFFF',
-          claro: '#F6F8F9',
-          texto: '#151A20',
-          'texto-sec': '#5B6470',
-          borda: '#E5E7EB',
+          grafite: 'rgb(var(--color-giro-grafite) / <alpha-value>)',
+          vermelho: 'rgb(var(--color-giro-vermelho) / <alpha-value>)',
+          turquesa: 'rgb(var(--color-giro-turquesa) / <alpha-value>)',
+          branco: 'rgb(var(--color-giro-branco) / <alpha-value>)',
+          claro: 'rgb(var(--color-giro-claro) / <alpha-value>)',
+          texto: 'rgb(var(--color-giro-texto) / <alpha-value>)',
+          'texto-sec': 'rgb(var(--color-giro-texto-sec) / <alpha-value>)',
+          borda: 'rgb(var(--color-giro-borda) / <alpha-value>)',
         },
       },
     },
