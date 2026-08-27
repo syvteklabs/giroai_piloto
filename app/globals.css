@@ -1,5 +1,59 @@
 @import "tailwindcss";
 
+@layer theme {
+  :root {
+    --color-giro-grafite: #101418;
+    --color-giro-vermelho: #F51B2B;
+    --color-giro-turquesa: #10BFB5;
+    --color-giro-branco: #FFFFFF;
+    --color-giro-claro: #F6F8F9;
+    --color-giro-texto: #151A20;
+    --color-giro-texto-sec: #5B6470;
+    --color-giro-borda: #E5E7EB;
+  }
+}
+
+@layer utilities {
+  .bg-giro-grafite { background-color: var(--color-giro-grafite); }
+  .bg-giro-vermelho { background-color: var(--color-giro-vermelho); }
+  .bg-giro-turquesa { background-color: var(--color-giro-turquesa); }
+  .bg-giro-branco { background-color: var(--color-giro-branco); }
+  .bg-giro-claro { background-color: var(--color-giro-claro); }
+  .bg-giro-texto { background-color: var(--color-giro-texto); }
+  .bg-giro-texto-sec { background-color: var(--color-giro-texto-sec); }
+  .bg-giro-borda { background-color: var(--color-giro-borda); }
+
+  .text-giro-grafite { color: var(--color-giro-grafite); }
+  .text-giro-vermelho { color: var(--color-giro-vermelho); }
+  .text-giro-turquesa { color: var(--color-giro-turquesa); }
+  .text-giro-branco { color: var(--color-giro-branco); }
+  .text-giro-claro { color: var(--color-giro-claro); }
+  .text-giro-texto { color: var(--color-giro-texto); }
+  .text-giro-texto-sec { color: var(--color-giro-texto-sec); }
+  .text-giro-borda { color: var(--color-giro-borda); }
+
+  .border-giro-grafite { border-color: var(--color-giro-grafite); }
+  .border-giro-vermelho { border-color: var(--color-giro-vermelho); }
+  .border-giro-turquesa { border-color: var(--color-giro-turquesa); }
+  .border-giro-branco { border-color: var(--color-giro-branco); }
+  .border-giro-claro { border-color: var(--color-giro-claro); }
+  .border-giro-texto { border-color: var(--color-giro-texto); }
+  .border-giro-texto-sec { border-color: var(--color-giro-texto-sec); }
+  .border-giro-borda { border-color: var(--color-giro-borda); }
+
+  .from-giro-grafite { --tw-gradient-from: var(--color-giro-grafite); }
+  .from-giro-vermelho { --tw-gradient-from: var(--color-giro-vermelho); }
+  .from-giro-turquesa { --tw-gradient-from: var(--color-giro-turquesa); }
+  .from-giro-branco { --tw-gradient-from: var(--color-giro-branco); }
+  .from-giro-claro { --tw-gradient-from: var(--color-giro-claro); }
+
+  .to-giro-grafite { --tw-gradient-to: var(--color-giro-grafite); }
+  .to-giro-vermelho { --tw-gradient-to: var(--color-giro-vermelho); }
+  .to-giro-turquesa { --tw-gradient-to: var(--color-giro-turquesa); }
+  .to-giro-branco { --tw-gradient-to: var(--color-giro-branco); }
+  .to-giro-claro { --tw-gradient-to: var(--color-giro-claro); }
+}
+
 * {
   margin: 0;
   padding: 0;
