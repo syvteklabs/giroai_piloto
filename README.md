@@ -23,17 +23,17 @@ Validar durante o piloto:
 - **Ícones:** Lucide React
 - **Deploy:** Vercel
 
-## 📋 Rotas
+## 📋 Rotas (CARD 2-8)
 
-| Rota | Descrição |
-|------|-----------|
-| `/` | Landing page |
-| `/participar` | Escolha de jornada (Moda / Outros Setores) |
-| `/cadastrar-estoque` | Cadastro de produtos (Moda) |
-| `/outros-setores` | Pesquisa de interesse em expansão |
-| `/oportunidades` | Vitrine de produtos aprovados |
-| `/mapa` | Mapa agregado por município |
-| `/privacidade` | Política de privacidade |
+| Rota | Descrição | Status |
+|------|-----------|--------|
+| `/` | Landing page com proposta de valor | ✅ CARD 2 |
+| `/participar` | Escolha de jornada (Moda / Outros Setores) | ✅ CARD 3 |
+| `/cadastrar-estoque` | Cadastro de produtos de moda | ✅ CARD 4 |
+| `/outros-setores` | Formulário de sinais de outros setores | ✅ CARD 5 |
+| `/oportunidades` | Vitrine de produtos com filtros e interesse | ✅ CARD 6 |
+| `/mapa` | Mapa agregado por município | ✅ CARD 7 |
+| `/privacidade` | Política de privacidade do piloto | ✅ CARD 8 |
 
 ## 🚀 Setup Local
 
@@ -107,9 +107,18 @@ Abra [http://localhost:3000](http://localhost:3000)
 
 ### O que é Privado
 
-- Email, telefone, nome (nunca publicados)
-- Registros de interesse em produtos (banco apenas)
+- Email, telefone, nome da empresa (nunca aparecem na vitrine)
+- Endereço de entrega/retirada (nunca aparece)
+- Registros de interesse em produtos (banco e email apenas)
 - Formulários de outros setores (banco apenas)
+- Contato entre interessados é feito via Giro (intermediária)
+
+### Proteção de Contatos
+
+- Empresas que registram produtos não veem quem tem interesse
+- Interessados não veem dados de contato das empresas
+- Giro AÍ atua como intermediária para possíveis contatos
+- Consentimento obrigatório antes de qualquer comunicação
 
 ## 📊 Estrutura de Dados
 
@@ -203,12 +212,23 @@ npm run build  # Validar build
 npm run dev    # Testar localmente
 ```
 
-## 📝 Notas
+## 📝 Notas sobre o MVP
 
 - Este é um piloto privado Merco Noroeste 2026
-- Funcionalidade de aprovação de produtos ainda manual (via Supabase Dashboard)
-- Analytics básica futura (sem dados pessoais)
-- Expansão para outros setores depende da validação inicial de moda
+- Jornada completa implementada: landing → participação → cadastro → vitrine → mapa
+- Proteção de dados: endereços e contatos individuais nunca aparecem publicamente
+- Mapa mostra apenas dados agregados por município
+- Validação de formulários com Zod no client e server
+- Consentimento para contato obrigatório em todos os formulários
+- RLS (Row Level Security) protege dados no Supabase
+
+## ⚙️ Limitações Conhecidas
+
+- Sem autenticação de usuário (futuro)
+- Sem notificações quando há novos interesses
+- Sem dashboard administrativo (usar Supabase Console para gerenciar dados)
+- Atualização do mapa apenas ao recarregar a página
+- Aprovação de produtos é manual (via Supabase Console)
 
 ## 📞 Contato
 
