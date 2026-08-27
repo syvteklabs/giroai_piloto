@@ -1,0 +1,37 @@
+import { z } from 'zod'
+
+export const cadastroEstoqueSchema = z.object({
+  nomeEmpresa: z.string().min(3, 'Nome da empresa obrigatório'),
+  email: z.string().email('Email inválido'),
+  telefone: z.string().min(10, 'Telefone deve ter pelo menos 10 dígitos'),
+  cidade: z.string().min(2, 'Cidade obrigatória'),
+  titulo: z.string().min(5, 'Título do produto obrigatório'),
+  descricao: z.string().min(10, 'Descrição obrigatória'),
+  categoria: z.enum([
+    'roupas',
+    'calcados',
+    'acessorios',
+    'moda-infantil',
+    'moda-intima',
+    'bolsas',
+    'outros',
+  ]),
+  quantidade: z.number().int().min(1, 'Quantidade deve ser maior que 0'),
+  preco_minimo: z.number().min(0, 'Preço mínimo obrigatório'),
+  preco_maximo: z.number().min(0, 'Preço máximo obrigatório'),
+})
+
+export type CadastroEstoque = z.infer<typeof cadastroEstoqueSchema>
+
+export const registroOutroSetorSchema = z.object({
+  setor: z.string().min(3, 'Setor obrigatório'),
+  tipo_estoque: z.string().min(5, 'Tipo de estoque obrigatório'),
+  quantidade_aproximada: z.enum(['ate-100', '100-500', '500-1000', 'acima-1000']),
+  faixa_valor: z.enum(['ate-1k', '1k-10k', '10k-50k', 'acima-50k']),
+  cidade: z.string().min(2, 'Cidade obrigatória'),
+  dificuldade_principal: z.string().min(5, 'Dificuldade obrigatória'),
+  interesse_expansao: z.boolean(),
+  email: z.string().email('Email inválido'),
+})
+
+export type RegistroOutroSetor = z.infer<typeof registroOutroSetorSchema>
