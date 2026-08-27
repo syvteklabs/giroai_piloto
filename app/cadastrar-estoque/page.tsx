@@ -64,58 +64,66 @@ export default function CadastrarEstoque() {
       // Validar com Zod
       const validated = cadastroEstoqueSchema.parse(formData)
 
-      // 1. Inserir empresa
-      const { data: empresaData, error: empresaError } = await supabase
-        .from('empresas')
-        .insert([
-          {
-            nome: validated.nomeEmpresa,
-            email: validated.email,
-            telefone: validated.telefone,
-            cidade: validated.cidade,
-            setor: 'moda',
-          },
-        ])
-        .select()
+      try {
+        // 1. Inserir empresa
+        const { data: empresaData, error: empresaError } = await supabase
+          .from('empresas')
+          .insert([
+            {
+              nome: validated.nomeEmpresa,
+              email: validated.email,
+              telefone: validated.telefone,
+              cidade: validated.cidade,
+              setor: 'moda',
+            },
+          ])
+          .select()
 
-      if (empresaError) throw new Error(empresaError.message)
-      const empresaId = empresaData?.[0]?.id
+        if (empresaError) throw new Error(empresaError.message)
+        const empresaId = empresaData?.[0]?.id
 
-      if (!empresaId) throw new Error('Erro ao criar empresa')
+        if (!empresaId) throw new Error('Erro ao criar empresa')
 
-      // 2. Inserir produto
-      const { error: produtoError } = await supabase
-        .from('produtos_moda')
-        .insert([
-          {
-            empresa_id: empresaId,
-            titulo: validated.titulo,
-            descricao: validated.descricao,
-            categoria: validated.categoria,
-            quantidade: validated.quantidade,
-            preco_minimo: validated.preco_minimo,
-            preco_maximo: validated.preco_maximo,
-            aprovado: false,
-          },
-        ])
+        // 2. Inserir produto
+        const { error: produtoError } = await supabase
+          .from('produtos_moda')
+          .insert([
+            {
+              empresa_id: empresaId,
+              titulo: validated.titulo,
+              descricao: validated.descricao,
+              categoria: validated.categoria,
+              quantidade: validated.quantidade,
+              preco_minimo: validated.preco_minimo,
+              preco_maximo: validated.preco_maximo,
+              aprovado: false,
+            },
+          ])
 
-      if (produtoError) throw new Error(produtoError.message)
+        if (produtoError) throw new Error(produtoError.message)
 
-      setSuccess(true)
-      setStatusMsg('✓ Cadastro recebido! Analisaremos em breve.')
-      setTimeout(() => setSuccess(false), 5000)
-      setFormData({
-        nomeEmpresa: '',
-        email: '',
-        telefone: '',
-        cidade: '',
-        titulo: '',
-        descricao: '',
-        categoria: '',
-        quantidade: '',
-        preco_minimo: '',
-        preco_maximo: '',
-      })
+        setSuccess(true)
+        setStatusMsg('✓ Cadastro recebido! Analisaremos em breve.')
+        setTimeout(() => setSuccess(false), 5000)
+        setFormData({
+          nomeEmpresa: '',
+          email: '',
+          telefone: '',
+          cidade: '',
+          titulo: '',
+          descricao: '',
+          categoria: '',
+          quantidade: '',
+          preco_minimo: '',
+          preco_maximo: '',
+        })
+      } catch (supabaseError: any) {
+        if (supabaseError.message.includes('configurado') || supabaseError.message.includes('NEXT_PUBLIC')) {
+          setStatusMsg('Supabase ainda não configurado. Esta funcionalidade estará disponível em breve.')
+        } else {
+          setStatusMsg(`Erro: ${supabaseError.message}`)
+        }
+      }
     } catch (error: any) {
       if (error.errors) {
         const newErrors: Record<string, string> = {}
