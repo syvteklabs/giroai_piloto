@@ -115,7 +115,7 @@ export default function OutrosSetores() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <section className="flex-1 bg-giro-claro py-8">
+      <section className="flex-1 bg-giro-claro py-8 min-h-screen">
         <div className="max-w-2xl mx-auto px-4">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-giro-grafite mb-2">

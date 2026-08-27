@@ -9,7 +9,7 @@ export default function Participar() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <section className="flex-1 bg-giro-claro">
+      <section className="flex-1 bg-giro-claro min-h-screen">
         <div className="max-w-6xl mx-auto px-4 py-12">
           <div className="text-center mb-12">
             <h1 className="text-3xl md:text-4xl font-bold text-giro-grafite mb-4">

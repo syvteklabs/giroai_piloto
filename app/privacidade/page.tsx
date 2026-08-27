@@ -7,7 +7,7 @@ export default function Privacidade() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <section className="flex-1 bg-giro-claro py-12">
+      <section className="flex-1 bg-giro-claro py-12 min-h-screen">
         <div className="max-w-3xl mx-auto px-4">
           <h1 className="text-3xl font-bold text-giro-grafite mb-8">
             Política de Privacidade

@@ -24,17 +24,17 @@ export function Header() {
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        <div className={`${isOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row gap-4 absolute md:static top-16 left-0 right-0 bg-giro-branco md:bg-transparent p-4 md:p-0 border-b md:border-0 border-giro-borda`}>
-          <Link href="/participar" className="text-giro-texto hover:text-giro-vermelho">
+        <div className={`${isOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row gap-4 absolute md:static top-16 left-0 right-0 bg-giro-branco md:bg-transparent p-4 md:p-0 border-b md:border-0 border-giro-borda z-40 md:z-auto`}>
+          <Link href="/participar" className="text-giro-texto hover:text-giro-vermelho" onClick={() => setIsOpen(false)}>
             Participar
           </Link>
-          <Link href="/oportunidades" className="text-giro-texto hover:text-giro-vermelho">
+          <Link href="/oportunidades" className="text-giro-texto hover:text-giro-vermelho" onClick={() => setIsOpen(false)}>
             Oportunidades
           </Link>
-          <Link href="/mapa" className="text-giro-texto hover:text-giro-vermelho">
+          <Link href="/mapa" className="text-giro-texto hover:text-giro-vermelho" onClick={() => setIsOpen(false)}>
             Mapa
           </Link>
-          <Link href="/privacidade" className="text-giro-texto hover:text-giro-vermelho">
+          <Link href="/privacidade" className="text-giro-texto hover:text-giro-vermelho" onClick={() => setIsOpen(false)}>
             Privacidade
           </Link>
         </div>

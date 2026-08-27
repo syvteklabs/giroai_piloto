@@ -38,12 +38,12 @@ export default function Mapa() {
           .from('registros_outros_setores')
           .select('cidade, setor')
 
-        const agretado = new Map<string, MarkerData>()
+        const agregado = new Map<string, MarkerData>()
 
         empresas?.forEach((emp) => {
           const cidade = emp.cidade || 'Desconhecida'
-          if (!agretado.has(cidade)) {
-            agretado.set(cidade, {
+          if (!agregado.has(cidade)) {
+            agregado.set(cidade, {
               cidade,
               totalEmpresas: 0,
               totalProdutos: 0,
@@ -52,15 +52,15 @@ export default function Mapa() {
               setoresPresentes: [],
             })
           }
-          const data = agretado.get(cidade)!
+          const data = agregado.get(cidade)!
           data.totalEmpresas += 1
         })
 
         produtos?.forEach((prod: any) => {
           const cidadeArray = Array.isArray(prod.empresas) ? prod.empresas[0]?.cidade : prod.empresas?.cidade
           const cidade = cidadeArray || 'Desconhecida'
-          if (!agretado.has(cidade)) {
-            agretado.set(cidade, {
+          if (!agregado.has(cidade)) {
+            agregado.set(cidade, {
               cidade,
               totalEmpresas: 0,
               totalProdutos: 0,
@@ -69,7 +69,7 @@ export default function Mapa() {
               setoresPresentes: [],
             })
           }
-          const data = agretado.get(cidade)!
+          const data = agregado.get(cidade)!
           data.totalProdutos += 1
           if (prod.categoria && !data.categoriasPresentes.includes(prod.categoria)) {
             data.categoriasPresentes.push(prod.categoria)
@@ -78,8 +78,8 @@ export default function Mapa() {
 
         outrosSetores?.forEach((reg) => {
           const cidade = reg.cidade || 'Desconhecida'
-          if (!agretado.has(cidade)) {
-            agretado.set(cidade, {
+          if (!agregado.has(cidade)) {
+            agregado.set(cidade, {
               cidade,
               totalEmpresas: 0,
               totalProdutos: 0,
@@ -88,14 +88,14 @@ export default function Mapa() {
               setoresPresentes: [],
             })
           }
-          const data = agretado.get(cidade)!
+          const data = agregado.get(cidade)!
           data.totalOutrosSetores += 1
           if (reg.setor && !data.setoresPresentes.includes(reg.setor)) {
             data.setoresPresentes.push(reg.setor)
           }
         })
 
-        setMarcadores(agretado)
+        setMarcadores(agregado)
       } catch (error) {
         console.error('Erro ao carregar dados do mapa:', error)
       } finally {
@@ -183,8 +183,8 @@ export default function Mapa() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <section className="flex-1 bg-white">
-        <div className="h-full flex flex-col">
+      <section className="flex-1 bg-white min-h-screen flex flex-col">
+        <div className="flex-1 flex flex-col">
           {/* Header do Mapa */}
           <div className="bg-giro-claro px-4 py-4 border-b border-giro-borda">
             <h1 className="text-2xl font-bold text-giro-grafite mb-1">
@@ -195,24 +195,23 @@ export default function Mapa() {
             </p>
           </div>
 
-          <div className="flex-1 flex flex-col md:flex-row gap-4 p-4">
+          <div className="flex-1 flex flex-col md:flex-row gap-4 p-4 min-h-0">
             {/* Mapa */}
-            <div className="flex-1 min-h-96 md:min-h-auto">
+            <div className="flex-1 rounded-lg border border-giro-borda overflow-hidden">
               {loading ? (
-                <div className="w-full h-full flex items-center justify-center bg-giro-claro rounded-lg">
+                <div className="w-full h-96 md:h-full flex items-center justify-center bg-giro-claro">
                   <Loader className="animate-spin text-giro-vermelho" size={32} />
                 </div>
               ) : (
                 <div
                   ref={containerRef}
-                  className="w-full h-full rounded-lg border border-giro-borda"
-                  style={{ minHeight: '400px' }}
+                  className="w-full h-96 md:h-full"
                 />
               )}
             </div>
 
             {/* Panel de Info */}
-            <div className="md:w-80 bg-giro-claro rounded-lg p-4 border border-giro-borda overflow-y-auto max-h-96 md:max-h-none">
+            <div className="md:w-80 bg-giro-claro rounded-lg p-4 border border-giro-borda overflow-y-auto h-96 md:h-auto">
               <h2 className="font-bold text-giro-grafite mb-4">Legenda</h2>
 
               <div className="space-y-3 mb-6">

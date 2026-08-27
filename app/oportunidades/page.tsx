@@ -83,7 +83,7 @@ export default function Oportunidades() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <section className="flex-1 bg-giro-claro py-8">
+      <section className="flex-1 bg-giro-claro py-8 min-h-screen">
         <div className="max-w-6xl mx-auto px-4">
           {/* Header */}
           <div className="mb-8">
