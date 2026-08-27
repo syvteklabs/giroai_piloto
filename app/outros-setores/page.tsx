@@ -3,7 +3,7 @@
 import { Header } from '@/components/header'
 import { FormInput, FormSelect, FormTextarea } from '@/components/form-input'
 import { registroOutroSetorSchema } from '@/lib/validations'
-import { supabase } from '@/lib/supabase'
+import { getSupabaseOrThrow } from '@/lib/supabase'
 import { useState } from 'react'
 import { CheckCircle, Loader, AlertCircle } from 'lucide-react'
 
@@ -64,6 +64,7 @@ export default function OutrosSetores() {
     setLoading(true)
 
     try {
+      const supabase = getSupabaseOrThrow()
       const validated = registroOutroSetorSchema.parse(formData)
 
       const { error } = await supabase

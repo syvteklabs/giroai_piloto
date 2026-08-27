@@ -1,7 +1,7 @@
 'use client'
 
 import { Header } from '@/components/header'
-import { supabase } from '@/lib/supabase'
+import { getSupabaseOrThrow } from '@/lib/supabase'
 import { useEffect, useState } from 'react'
 import { Heart, MessageCircle, MapPin, Loader } from 'lucide-react'
 import type { ProdutoModa } from '@/types'
@@ -18,6 +18,7 @@ export default function Oportunidades() {
   useEffect(() => {
     const fetchProdutos = async () => {
       try {
+        const supabase = getSupabaseOrThrow()
         let query = supabase
           .from('produtos_moda')
           .select('*, empresas(nome, cidade)')
@@ -48,6 +49,7 @@ export default function Oportunidades() {
     }
 
     try {
+      const supabase = getSupabaseOrThrow()
       const { error } = await supabase.from('interesses').insert([
         {
           email: interesseEmail,
