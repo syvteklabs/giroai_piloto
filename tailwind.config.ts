@@ -9,15 +9,19 @@ const config: Config = {
     extend: {
       colors: {
         giro: {
-          grafite: '#101418',
-          vermelho: '#F51B2B',
-          turquesa: '#10BFB5',
+          grafite: '#0B1218',
+          vermelho: '#FF1F35',
+          turquesa: '#08BDBA',
           branco: '#FFFFFF',
-          claro: '#F6F8F9',
+          claro: '#F7F9FA',
           texto: '#151A20',
-          'texto-sec': '#5B6470',
+          'texto-sec': '#56616F',
           borda: '#E5E7EB',
+          'turquesa-claro': '#E6F5F4',
         },
+      },
+      fontSize: {
+        clamp: 'clamp(1.5rem, 5vw, 3.5rem)',
       },
     },
   },
