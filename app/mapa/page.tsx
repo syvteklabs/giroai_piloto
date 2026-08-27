@@ -42,7 +42,7 @@ export default function Mapa() {
 
         const agregado = new Map<string, MarkerData>()
 
-        empresas?.forEach((emp) => {
+        empresas?.forEach((emp: any) => {
           const cidade = emp.cidade || 'Desconhecida'
           if (!agregado.has(cidade)) {
             agregado.set(cidade, {
@@ -78,7 +78,7 @@ export default function Mapa() {
           }
         })
 
-        outrosSetores?.forEach((reg) => {
+        outrosSetores?.forEach((reg: any) => {
           const cidade = reg.cidade || 'Desconhecida'
           if (!agregado.has(cidade)) {
             agregado.set(cidade, {
