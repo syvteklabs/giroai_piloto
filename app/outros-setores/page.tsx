@@ -3,8 +3,8 @@
 import { Header } from '@/components/header'
 import { FormInput, FormSelect, FormTextarea } from '@/components/form-input'
 import { registroOutroSetorSchema } from '@/lib/validations'
-import { supabase, isSupabaseConfigured, getSupabaseError } from '@/lib/supabase'
-import { useState, useEffect } from 'react'
+import { getSupabaseOrThrow } from '@/lib/supabase'
+import { useState } from 'react'
 import { CheckCircle, Loader, AlertCircle } from 'lucide-react'
 
 const quantidades = [
@@ -22,28 +22,6 @@ const faixasValor = [
 ]
 
 export default function OutrosSetores() {
-  const handleRenderNotReady = () => (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <section className="flex-1 bg-giro-claro py-8">
-        <div className="max-w-2xl mx-auto px-4">
-          <div className="bg-white rounded-lg p-8 border border-giro-borda">
-            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center gap-3">
-              <AlertCircle className="text-yellow-600" size={24} />
-              <div>
-                <p className="font-semibold text-yellow-900">
-                  Supabase ainda não configurado
-                </p>
-                <p className="text-sm text-yellow-700">
-                  Esta funcionalidade estará disponível em breve. Volte mais tarde.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  )
   const [formData, setFormData] = useState({
     setor: '',
     tipo_estoque: '',
@@ -59,11 +37,6 @@ export default function OutrosSetores() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [statusMsg, setStatusMsg] = useState('')
-  const [supabaseReady, setSupabaseReady] = useState(false)
-
-  useEffect(() => {
-    setSupabaseReady(isSupabaseConfigured())
-  }, [])
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -87,21 +60,12 @@ export default function OutrosSetores() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (!supabaseReady) {
-      setStatusMsg('Erro: Supabase ainda não foi configurado')
-      return
-    }
-
     setErrors({})
     setLoading(true)
 
     try {
+      const supabase = getSupabaseOrThrow()
       const validated = registroOutroSetorSchema.parse(formData)
-
-      if (!supabase) {
-        throw new Error(getSupabaseError())
-      }
 
       const { error } = await supabase
         .from('registros_outros_setores')
@@ -146,10 +110,6 @@ export default function OutrosSetores() {
     } finally {
       setLoading(false)
     }
-  }
-
-  if (!supabaseReady) {
-    return handleRenderNotReady()
   }
 
   return (

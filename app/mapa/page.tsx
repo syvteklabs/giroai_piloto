@@ -2,7 +2,7 @@
 
 import { Header } from '@/components/header'
 import { useEffect, useRef, useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import { supabase, getSupabaseOrThrow } from '@/lib/supabase'
 import { buscarPorNome } from '@/lib/municipios'
 import { Loader } from 'lucide-react'
 
@@ -25,22 +25,17 @@ export default function Mapa() {
   useEffect(() => {
     const fetchDados = async () => {
       try {
-        if (!supabase) {
-          console.error('Supabase não configurado')
-          setLoading(false)
-          return
-        }
-
-        const { data: empresas } = await supabase
+        const sb = getSupabaseOrThrow()
+        const { data: empresas } = await sb
           .from('empresas')
           .select('cidade')
 
-        const { data: produtos } = await supabase
+        const { data: produtos } = await sb
           .from('produtos_moda')
           .select('categoria, empresa_id, empresas!inner(cidade)')
           .eq('aprovado', true)
 
-        const { data: outrosSetores } = await supabase
+        const { data: outrosSetores } = await sb
           .from('registros_outros_setores')
           .select('cidade, setor')
 
