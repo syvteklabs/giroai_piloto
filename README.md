@@ -23,46 +23,61 @@ Validar durante o piloto:
 - **Ícones:** Lucide React
 - **Deploy:** Vercel
 
-## 📋 Rotas
+## 📋 Rotas (CARD 2-8)
 
-| Rota | Descrição |
-|------|-----------|
-| `/` | Landing page |
-| `/participar` | Escolha de jornada (Moda / Outros Setores) |
-| `/cadastrar-estoque` | Cadastro de produtos (Moda) |
-| `/outros-setores` | Pesquisa de interesse em expansão |
-| `/oportunidades` | Vitrine de produtos aprovados |
-| `/mapa` | Mapa agregado por município |
-| `/privacidade` | Política de privacidade |
+| Rota | Descrição | Status |
+|------|-----------|--------|
+| `/` | Landing page com proposta de valor | ✅ CARD 2 |
+| `/participar` | Escolha de jornada (Moda / Outros Setores) | ✅ CARD 3 |
+| `/cadastrar-estoque` | Cadastro de produtos de moda | ✅ CARD 4 |
+| `/outros-setores` | Formulário de sinais de outros setores | ✅ CARD 5 |
+| `/oportunidades` | Vitrine de produtos com filtros e interesse | ✅ CARD 6 |
+| `/mapa` | Mapa agregado por município | ✅ CARD 7 |
+| `/privacidade` | Política de privacidade do piloto | ✅ CARD 8 |
 
 ## 🚀 Setup Local
 
 ### 1. Clonar e Instalar
 
 ```bash
-git clone <repo>
+git clone https://github.com/syvteklabs/giroai_piloto
 cd giroai_piloto
 npm install
 ```
 
 ### 2. Configurar Supabase
 
+**A. Criar Projeto**
+
 1. Acesse [supabase.com](https://supabase.com)
-2. Crie um novo projeto
-3. Copie a URL e a chave anônima
-4. Crie `.env.local`:
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anonima
-   ```
+2. Crie um novo projeto (anote a senha postgres)
+3. Após criado, vá em **Project Settings → API**
+4. Copie:
+   - **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
+   - **Anon Key** → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
+**B. Configurar Variáveis Localmente**
+
+Crie `.env.local`:
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://seu-id-aqui.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anonima-aqui
+```
 
 ### 3. Executar Migrations
 
-Na Dashboard do Supabase:
-1. Vá em **SQL Editor**
-2. Crie uma nova query
-3. Cole o conteúdo de `supabase/migrations/001_initial_schema.sql`
-4. Execute
+**No SQL Editor do Supabase:**
+
+1. Vá em **SQL Editor** → **+ New Query**
+2. **Primeira execução:** Cole todo o conteúdo de `supabase/migrations/001_initial_schema.sql`
+3. Execute (clique no play ou Ctrl+Enter)
+4. **Segunda execução:** Cole todo o conteúdo de `supabase/migrations/002_schema_seguro.sql`
+5. Execute
+
+**Resultado esperado:**
+- ✓ 5 tabelas criadas (empresas, contatos_empresas, produtos_moda, interesses, registros_outros_setores)
+- ✓ 2 funções RPC criadas (cadastrar_empresa_com_produto, registrar_interesse_produto)
+- ✓ RLS ativado em todas as tabelas
 
 ### 4. Iniciar Dev Server
 
@@ -71,6 +86,8 @@ npm run dev
 ```
 
 Abra [http://localhost:3000](http://localhost:3000)
+
+**Pronto!** Agora você pode testar os formulários localmente. Os dados serão salvos em seu projeto Supabase.
 
 ## 🔐 Segurança e Privacidade
 
@@ -90,9 +107,18 @@ Abra [http://localhost:3000](http://localhost:3000)
 
 ### O que é Privado
 
-- Email, telefone, nome (nunca publicados)
-- Registros de interesse em produtos (banco apenas)
+- Email, telefone, nome da empresa (nunca aparecem na vitrine)
+- Endereço de entrega/retirada (nunca aparece)
+- Registros de interesse em produtos (banco e email apenas)
 - Formulários de outros setores (banco apenas)
+- Contato entre interessados é feito via Giro (intermediária)
+
+### Proteção de Contatos
+
+- Empresas que registram produtos não veem quem tem interesse
+- Interessados não veem dados de contato das empresas
+- Giro AÍ atua como intermediária para possíveis contatos
+- Consentimento obrigatório antes de qualquer comunicação
 
 ## 📊 Estrutura de Dados
 
@@ -128,23 +154,56 @@ registros_outros_setores
 
 ## 📦 Build e Deploy
 
-### Build
+### Build Local
 
 ```bash
 npm run build
 ```
 
-### Vercel
+**Resultado esperado:**
+- ✓ Compila sem erros
+- ✓ 8 rotas pré-renderizadas
+- ✓ Pronto para produção
 
-1. Conecte o repositório ao Vercel
-2. Adicione as variáveis de ambiente:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-3. Deploy automático em cada push
+### Deploy em Vercel
+
+**Passo 1: Conectar Repositório**
+
+1. Acesse [vercel.com](https://vercel.com)
+2. Clique **Add New → Project**
+3. Selecione repositório: `syvteklabs/giroai_piloto`
+4. Selecione branch: `main`
+
+**Passo 2: Configurar Variáveis de Ambiente**
+
+No Vercel, vá em **Settings → Environment Variables** e adicione:
+
+```
+NEXT_PUBLIC_SUPABASE_URL = https://seu-id-aqui.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY = sua-chave-anonima-aqui
+```
+
+**Importante:** Configure em **todos os ambientes**:
+- ✓ Production
+- ✓ Preview
+- ✓ Development
+
+**Passo 3: Deploy**
 
 ```bash
-git push origin claude/giro-ai-mvp-merco-ybd0tl
+git push origin main
 ```
+
+Vercel faz deploy automático. Acesse seu projeto em `https://seu-projeto.vercel.app`
+
+### Variáveis Necessárias
+
+| Variável | Origem | Exemplo |
+|----------|--------|---------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase → Settings → API | `https://xyzabc123.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase → Settings → API | `eyJhbGc...` (chave pública) |
+
+**⚠️ NUNCA use `SUPABASE_SERVICE_ROLE_KEY` no navegador!**
 
 ## 🧪 Teste
 
@@ -153,12 +212,23 @@ npm run build  # Validar build
 npm run dev    # Testar localmente
 ```
 
-## 📝 Notas
+## 📝 Notas sobre o MVP
 
 - Este é um piloto privado Merco Noroeste 2026
-- Funcionalidade de aprovação de produtos ainda manual (via Supabase Dashboard)
-- Analytics básica futura (sem dados pessoais)
-- Expansão para outros setores depende da validação inicial de moda
+- Jornada completa implementada: landing → participação → cadastro → vitrine → mapa
+- Proteção de dados: endereços e contatos individuais nunca aparecem publicamente
+- Mapa mostra apenas dados agregados por município
+- Validação de formulários com Zod no client e server
+- Consentimento para contato obrigatório em todos os formulários
+- RLS (Row Level Security) protege dados no Supabase
+
+## ⚙️ Limitações Conhecidas
+
+- Sem autenticação de usuário (futuro)
+- Sem notificações quando há novos interesses
+- Sem dashboard administrativo (usar Supabase Console para gerenciar dados)
+- Atualização do mapa apenas ao recarregar a página
+- Aprovação de produtos é manual (via Supabase Console)
 
 ## 📞 Contato
 

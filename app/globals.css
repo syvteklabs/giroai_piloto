@@ -1,6 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-giro-grafite: #101418;
+  --color-giro-vermelho: #f51b2b;
+  --color-giro-turquesa: #10bfb5;
+  --color-giro-branco: #ffffff;
+  --color-giro-claro: #f6f8f9;
+  --color-giro-texto: #151a20;
+  --color-giro-texto-sec: #5b6470;
+  --color-giro-borda: #e5e7eb;
+}
 
 * {
   margin: 0;
