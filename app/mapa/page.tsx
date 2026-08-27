@@ -25,6 +25,12 @@ export default function Mapa() {
   useEffect(() => {
     const fetchDados = async () => {
       try {
+        if (!supabase) {
+          console.error('Supabase não configurado')
+          setLoading(false)
+          return
+        }
+
         const { data: empresas } = await supabase
           .from('empresas')
           .select('cidade')

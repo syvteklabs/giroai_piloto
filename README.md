@@ -40,29 +40,44 @@ Validar durante o piloto:
 ### 1. Clonar e Instalar
 
 ```bash
-git clone <repo>
+git clone https://github.com/syvteklabs/giroai_piloto
 cd giroai_piloto
 npm install
 ```
 
 ### 2. Configurar Supabase
 
+**A. Criar Projeto**
+
 1. Acesse [supabase.com](https://supabase.com)
-2. Crie um novo projeto
-3. Copie a URL e a chave anônima
-4. Crie `.env.local`:
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anonima
-   ```
+2. Crie um novo projeto (anote a senha postgres)
+3. Após criado, vá em **Project Settings → API**
+4. Copie:
+   - **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
+   - **Anon Key** → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
+**B. Configurar Variáveis Localmente**
+
+Crie `.env.local`:
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://seu-id-aqui.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anonima-aqui
+```
 
 ### 3. Executar Migrations
 
-Na Dashboard do Supabase:
-1. Vá em **SQL Editor**
-2. Crie uma nova query
-3. Cole o conteúdo de `supabase/migrations/001_initial_schema.sql`
-4. Execute
+**No SQL Editor do Supabase:**
+
+1. Vá em **SQL Editor** → **+ New Query**
+2. **Primeira execução:** Cole todo o conteúdo de `supabase/migrations/001_initial_schema.sql`
+3. Execute (clique no play ou Ctrl+Enter)
+4. **Segunda execução:** Cole todo o conteúdo de `supabase/migrations/002_schema_seguro.sql`
+5. Execute
+
+**Resultado esperado:**
+- ✓ 5 tabelas criadas (empresas, contatos_empresas, produtos_moda, interesses, registros_outros_setores)
+- ✓ 2 funções RPC criadas (cadastrar_empresa_com_produto, registrar_interesse_produto)
+- ✓ RLS ativado em todas as tabelas
 
 ### 4. Iniciar Dev Server
 
@@ -71,6 +86,8 @@ npm run dev
 ```
 
 Abra [http://localhost:3000](http://localhost:3000)
+
+**Pronto!** Agora você pode testar os formulários localmente. Os dados serão salvos em seu projeto Supabase.
 
 ## 🔐 Segurança e Privacidade
 
@@ -128,23 +145,56 @@ registros_outros_setores
 
 ## 📦 Build e Deploy
 
-### Build
+### Build Local
 
 ```bash
 npm run build
 ```
 
-### Vercel
+**Resultado esperado:**
+- ✓ Compila sem erros
+- ✓ 8 rotas pré-renderizadas
+- ✓ Pronto para produção
 
-1. Conecte o repositório ao Vercel
-2. Adicione as variáveis de ambiente:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-3. Deploy automático em cada push
+### Deploy em Vercel
+
+**Passo 1: Conectar Repositório**
+
+1. Acesse [vercel.com](https://vercel.com)
+2. Clique **Add New → Project**
+3. Selecione repositório: `syvteklabs/giroai_piloto`
+4. Selecione branch: `main`
+
+**Passo 2: Configurar Variáveis de Ambiente**
+
+No Vercel, vá em **Settings → Environment Variables** e adicione:
+
+```
+NEXT_PUBLIC_SUPABASE_URL = https://seu-id-aqui.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY = sua-chave-anonima-aqui
+```
+
+**Importante:** Configure em **todos os ambientes**:
+- ✓ Production
+- ✓ Preview
+- ✓ Development
+
+**Passo 3: Deploy**
 
 ```bash
-git push origin claude/giro-ai-mvp-merco-ybd0tl
+git push origin main
 ```
+
+Vercel faz deploy automático. Acesse seu projeto em `https://seu-projeto.vercel.app`
+
+### Variáveis Necessárias
+
+| Variável | Origem | Exemplo |
+|----------|--------|---------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase → Settings → API | `https://xyzabc123.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase → Settings → API | `eyJhbGc...` (chave pública) |
+
+**⚠️ NUNCA use `SUPABASE_SERVICE_ROLE_KEY` no navegador!**
 
 ## 🧪 Teste
 

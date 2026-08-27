@@ -18,6 +18,11 @@ export default function Oportunidades() {
   useEffect(() => {
     const fetchProdutos = async () => {
       try {
+        if (!supabase) {
+          console.error('Supabase não configurado')
+          return
+        }
+
         let query = supabase
           .from('produtos_moda')
           .select('*, empresas(nome, cidade)')
@@ -48,12 +53,14 @@ export default function Oportunidades() {
     }
 
     try {
+      if (!supabase) throw new Error('Supabase não configurado')
+
       const { error } = await supabase.from('interesses').insert([
         {
           email: interesseEmail,
           produto_id: produtoId,
         },
-      ])
+      ] as any)
 
       if (error && !error.message.includes('duplicate')) {
         throw error
