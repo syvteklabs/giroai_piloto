@@ -2,16 +2,42 @@
 
 ## 1. Criar Projeto Supabase
 
-1. Acesse [supabase.com](https://supabase.com)
-2. Crie novo projeto
-3. Copie a URL do projeto e a chave anônima
-4. Cole em `.env.local`:
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anonima
-   ```
+1. Acesse [supabase.com](https://supabase.com) e faça login
+2. Clique em **+ New Project**
+3. Preencha os dados do projeto
+4. Aguarde a criação do projeto
+5. Copie a **Project URL** e a **Anon Key** (em Settings > API)
 
-## 2. Executar Migrations
+## 2. Configurar Variáveis de Ambiente
+
+### Local Development
+
+Copie o arquivo de exemplo e edite com suas credenciais:
+```bash
+cp .env.local.example .env.local
+```
+
+Edite o arquivo `.env.local` com suas credenciais Supabase:
+```
+NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anonima-aqui
+```
+
+Você pode encontrar essas valores em:
+- Supabase Dashboard > Settings > API
+- Project URL: copie o valor de "Project URL"
+- Anon Key: copie o valor de "anon" em "Project API keys"
+
+### Vercel Deployment
+
+No dashboard do Vercel:
+1. Vá para o projeto
+2. Clique em **Settings** > **Environment Variables**
+3. Adicione as mesmas variáveis:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
+## 3. Executar Migrations
 
 Na Dashboard do Supabase:
 1. Vá em **SQL Editor**
@@ -24,21 +50,14 @@ Ou execute localmente com:
 supabase db push
 ```
 
-## 3. Variáveis de Ambiente
-
-Após o setup, configure seu `.env.local`:
-```bash
-cp .env.local.example .env.local
-# Edite com suas credenciais Supabase
-```
-
-## 4. Vercel Deploy
+## 4. Testar Localmente
 
 ```bash
-git push origin claude/giro-ai-mvp-merco-ybd0tl
+npm install
+npm run dev
 ```
 
-No Vercel, configure as mesmas env vars do `.env.local`.
+Acesse http://localhost:3000/cadastrar-estoque para testar o formulário de cadastro.
 
 ## Estrutura de Dados
 
