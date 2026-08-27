@@ -1,5 +1,7 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 import { Header } from '@/components/header'
 import { supabase } from '@/lib/supabase'
 import { useEffect, useState } from 'react'
