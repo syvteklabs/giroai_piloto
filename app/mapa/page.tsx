@@ -3,8 +3,7 @@
 import { Header } from '@/components/header'
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '@/lib/supabase'
-import { municipiosNoroeste, buscarPorNome } from '@/lib/municipios'
-import L from 'leaflet'
+import { buscarPorNome } from '@/lib/municipios'
 import { Loader } from 'lucide-react'
 
 interface MarkerData {
@@ -17,7 +16,7 @@ interface MarkerData {
 }
 
 export default function Mapa() {
-  const mapRef = useRef<L.Map | null>(null)
+  const mapRef = useRef<any | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [loading, setLoading] = useState(true)
   const [marcadores, setMarcadores] = useState<Map<string, MarkerData>>(new Map())
@@ -26,32 +25,21 @@ export default function Mapa() {
   useEffect(() => {
     const fetchDados = async () => {
       try {
-        // Buscar empresas (moda)
-        const { data: empresas, error: empresasError } = await supabase
+        const { data: empresas } = await supabase
           .from('empresas')
           .select('cidade')
 
-        if (empresasError) throw empresasError
-
-        // Buscar produtos moda aprovados
-        const { data: produtos, error: produtosError } = await supabase
+        const { data: produtos } = await supabase
           .from('produtos_moda')
-          .select('categoria, empresas(cidade)')
+          .select('categoria, empresa_id, empresas!inner(cidade)')
           .eq('aprovado', true)
 
-        if (produtosError) throw produtosError
-
-        // Buscar registros outros setores
-        const { data: outrosSetores, error: outrosError } = await supabase
+        const { data: outrosSetores } = await supabase
           .from('registros_outros_setores')
           .select('cidade, setor')
 
-        if (outrosError) throw outrosError
-
-        // Agregar por cidade
         const agretado = new Map<string, MarkerData>()
 
-        // Contar empresas por cidade
         empresas?.forEach((emp) => {
           const cidade = emp.cidade || 'Desconhecida'
           if (!agretado.has(cidade)) {
@@ -68,9 +56,9 @@ export default function Mapa() {
           data.totalEmpresas += 1
         })
 
-        // Contar produtos por cidade
-        produtos?.forEach((prod) => {
-          const cidade = prod.empresas?.cidade || 'Desconhecida'
+        produtos?.forEach((prod: any) => {
+          const cidadeArray = Array.isArray(prod.empresas) ? prod.empresas[0]?.cidade : prod.empresas?.cidade
+          const cidade = cidadeArray || 'Desconhecida'
           if (!agretado.has(cidade)) {
             agretado.set(cidade, {
               cidade,
@@ -88,7 +76,6 @@ export default function Mapa() {
           }
         })
 
-        // Contar outros setores por cidade
         outrosSetores?.forEach((reg) => {
           const cidade = reg.cidade || 'Desconhecida'
           if (!agretado.has(cidade)) {
@@ -120,71 +107,74 @@ export default function Mapa() {
   }, [])
 
   useEffect(() => {
-    if (!containerRef.current || loading) return
+    if (!containerRef.current || loading || !marcadores.size) return
 
-    // Inicializar mapa
-    if (mapRef.current) {
-      mapRef.current.remove()
+    const initMap = async () => {
+      try {
+        const L = (await import('leaflet')).default
+
+        if (mapRef.current) {
+          mapRef.current.remove()
+        }
+
+        mapRef.current = L.map(containerRef.current!).setView([-27.5, -55.5], 8)
+
+        L.tileLayer(
+          'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19,
+          }
+        ).addTo(mapRef.current)
+
+        marcadores.forEach((data) => {
+          const municipio = buscarPorNome(data.cidade)
+          if (!municipio) return
+
+          const total = data.totalEmpresas + data.totalOutrosSetores
+          const cor = total > 5 ? '#F51B2B' : total > 2 ? '#10BFB5' : '#E5E7EB'
+          const tamanho = Math.max(20, Math.min(40, 20 + total * 2))
+
+          const marker = L.circleMarker([municipio.lat, municipio.lng], {
+            radius: tamanho / 2,
+            fillColor: cor,
+            color: '#101418',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.8,
+          }).addTo(mapRef.current!)
+
+          const popup = `
+            <div style="font-family: system-ui; padding: 8px; font-size: 12px;">
+              <h3 style="margin: 0 0 8px 0; font-weight: bold; color: #101418;">
+                ${municipio.nome}
+              </h3>
+              <p style="margin: 4px 0; color: #5B6470;">
+                <strong>Moda:</strong> ${data.totalEmpresas} empresa${data.totalEmpresas !== 1 ? 's' : ''}, ${data.totalProdutos} produto${data.totalProdutos !== 1 ? 's' : ''}
+              </p>
+              ${data.totalOutrosSetores > 0
+                ? `<p style="margin: 4px 0; color: #5B6470;">
+                    <strong>Outros setores:</strong> ${data.totalOutrosSetores} registro${data.totalOutrosSetores !== 1 ? 's' : ''}
+                  </p>`
+                : ''
+              }
+            </div>
+          `
+
+          marker.bindPopup(popup)
+          marker.on('click', () => setSelectedMarker(data))
+        })
+      } catch (error) {
+        console.error('Erro ao inicializar mapa:', error)
+      }
     }
 
-    mapRef.current = L.map(containerRef.current).setView([-27.5, -55.5], 8)
-
-    L.tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {
-        attribution: '© OpenStreetMap contributors',
-        maxZoom: 19,
-      }
-    ).addTo(mapRef.current)
-
-    // Adicionar marcadores
-    marcadores.forEach((data) => {
-      const municipio = buscarPorNome(data.cidade)
-      if (!municipio) return
-
-      const total = data.totalEmpresas + data.totalOutrosSetores
-      const cor = total > 5 ? '#F51B2B' : total > 2 ? '#10BFB5' : '#E5E7EB'
-      const tamanho = Math.max(20, Math.min(40, 20 + total * 2))
-
-      const marker = L.circleMarker([municipio.lat, municipio.lng], {
-        radius: tamanho / 2,
-        fillColor: cor,
-        color: '#101418',
-        weight: 2,
-        opacity: 1,
-        fillOpacity: 0.8,
-      }).addTo(mapRef.current!)
-
-      const popup = `
-        <div style="font-family: system-ui; padding: 8px;">
-          <h3 style="margin: 0 0 8px 0; font-weight: bold; color: #101418;">
-            ${municipio.nome}
-          </h3>
-          <p style="margin: 4px 0; font-size: 12px; color: #5B6470;">
-            <strong>Moda:</strong> ${data.totalEmpresas} empresa${data.totalEmpresas !== 1 ? 's' : ''}, ${data.totalProdutos} produto${data.totalProdutos !== 1 ? 's' : ''}
-          </p>
-          ${data.totalOutrosSetores > 0
-            ? `<p style="margin: 4px 0; font-size: 12px; color: #5B6470;">
-                <strong>Outros setores:</strong> ${data.totalOutrosSetores} registro${data.totalOutrosSetores !== 1 ? 's' : ''}
-              </p>`
-            : ''
-          }
-          ${data.categoriasPresentes.length > 0
-            ? `<p style="margin: 4px 0; font-size: 11px; color: #5B6470;">
-                <strong>Categorias:</strong> ${data.categoriasPresentes.join(', ')}
-              </p>`
-            : ''
-          }
-        </div>
-      `
-
-      marker.bindPopup(popup)
-      marker.on('click', () => setSelectedMarker(data))
-    })
+    initMap()
 
     return () => {
       if (mapRef.current) {
         mapRef.current.remove()
+        mapRef.current = null
       }
     }
   }, [marcadores, loading])
@@ -201,7 +191,7 @@ export default function Mapa() {
               Mapa Regional Giro AÍ
             </h1>
             <p className="text-sm text-giro-texto-sec">
-              Veja a distribuição de oportunidades por município
+              Veja a distribuição de oportunidades por município (dados agregados)
             </p>
           </div>
 
