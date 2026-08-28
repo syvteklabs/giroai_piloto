@@ -47,6 +47,13 @@ export const metadata: Metadata = {
     siteName: "Giro AÍ",
     images: [
       {
+        url: "https://images.giroaihub.com/giroai-b2b.png",
+        width: 1200,
+        height: 630,
+        alt: "Giro AÍ - Plataforma B2B de oportunidades comerciais",
+        type: "image/png",
+      },
+      {
         url: `${siteUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
@@ -59,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Giro AÍ - Inteligência que faz o estoque girar",
     description: "Transforme estoque parado em oportunidades comerciais",
-    images: [`${siteUrl}/og-image.jpg`],
+    images: ["https://images.giroaihub.com/giroai-b2b.png", `${siteUrl}/og-image.jpg`],
   },
   alternates: {
     canonical: siteUrl,
@@ -78,7 +85,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     name: "Giro AÍ",
     description: "Plataforma de inteligência territorial para transformar estoque parado em oportunidades comerciais",
     url: siteUrl,
-    logo: `${siteUrl}/logo.png`,
+    logo: "https://images.giroaihub.com/giroai-b2b.png",
+    image: "https://images.giroaihub.com/giroai-b2b.png",
     sameAs: [],
     contactPoint: {
       "@type": "ContactPoint",
