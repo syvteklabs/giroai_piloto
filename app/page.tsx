@@ -10,106 +10,94 @@ export default function Home() {
       <Header />
 
       {/* Hero */}
-      <section className="relative bg-white overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-24 lg:py-28">
-          {/* Two-column layout: flex on desktop, stack on mobile */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
+      <section className="relative bg-white overflow-hidden border-b border-giro-borda">
+        <div className="max-w-6xl mx-auto px-4 py-20 sm:py-24 md:py-28 lg:py-32">
 
-            {/* Left column: Content */}
-            <div className="flex-1 mb-16 lg:mb-0">
-              {/* Eyebrow */}
-              <div className="mb-8">
-                <span className="inline-block text-xs font-semibold text-giro-vermelho tracking-widest uppercase">
-                  ● Ativação ao vivo · Merco Noroeste 2026
-                </span>
-              </div>
+          {/* Eyebrow */}
+          <div className="mb-6 md:mb-8">
+            <span className="inline-block text-xs md:text-xs font-semibold text-giro-vermelho tracking-wider">
+              ● ATIVAÇÃO AO VIVO · MERCO NOROESTE 2026
+            </span>
+          </div>
 
-              {/* Main Heading */}
-              <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-5xl xl:text-6xl font-bold text-giro-grafite mb-8 leading-tight">
+          {/* Main content grid - responsive */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+            {/* Left column */}
+            <div className="flex flex-col justify-start">
+              {/* Heading */}
+              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-5xl font-bold text-giro-grafite mb-6 leading-snug">
                 Estoque parado pode virar <span className="text-giro-vermelho">negócio</span>.
               </h1>
 
               {/* Description */}
-              <p className="text-lg md:text-lg text-giro-texto-sec mb-12 leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-base md:text-base text-giro-texto-sec mb-10 leading-relaxed max-w-xl">
                 O Giro AÍ conecta estoques de moda a novas oportunidades e ajuda a revelar onde esse desafio também aparece em outros setores.
               </p>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              {/* CTA Buttons - side by side on desktop, stacked on mobile */}
+              <div className="flex flex-col sm:flex-row gap-3 mb-10 w-full sm:w-auto">
                 <Link
                   href="/participar"
-                  className="inline-flex px-8 py-4 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 items-center justify-center gap-2 transition transform hover:-translate-y-1 shadow-md hover:shadow-lg whitespace-nowrap"
+                  className="flex-1 sm:flex-none px-7 py-3 bg-giro-vermelho text-white text-center font-semibold rounded-lg hover:bg-giro-vermelho/90 transition shadow-md hover:shadow-lg"
                 >
-                  Tenho estoque parado <ArrowRight size={20} />
+                  Tenho estoque parado
                 </Link>
                 <Link
                   href="/oportunidades"
-                  className="inline-flex px-8 py-4 border-2 border-giro-grafite text-giro-grafite rounded-lg font-semibold hover:bg-giro-grafite hover:text-white transition transform hover:-translate-y-1 items-center justify-center whitespace-nowrap"
+                  className="flex-1 sm:flex-none px-7 py-3 border border-giro-grafite text-giro-grafite text-center font-semibold rounded-lg hover:bg-giro-grafite hover:text-white transition"
                 >
                   Ver oportunidades
                 </Link>
               </div>
 
-              {/* Social Proof */}
-              <p className="text-sm text-giro-texto-sec font-medium">
+              {/* Social proof */}
+              <p className="text-xs sm:text-sm text-giro-texto-sec font-medium">
                 Moda primeiro · Outros setores também podem participar
               </p>
             </div>
 
-            {/* Right column: Visual Composition */}
-            <div className="flex-1 lg:flex-shrink-0">
-              <div className="w-full">
-                {/* Visual composition container */}
-                <div className="relative flex flex-col items-center justify-center">
-
-                  {/* Top section: Estoque disponível */}
-                  <div className="w-full max-w-sm mb-12">
-                    <div className="bg-white border border-giro-borda rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-sm font-semibold text-giro-grafite">Estoque disponível</h3>
-                        <div className="w-2 h-2 bg-giro-vermelho rounded-full"></div>
+            {/* Right column - Visual diagram */}
+            <div className="flex flex-col items-center lg:items-start justify-center">
+              <div className="w-full max-w-sm">
+                {/* Step 1: Stock */}
+                <div className="mb-10">
+                  <div className="bg-giro-claro border border-giro-borda rounded-xl p-5">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-8 h-8 rounded-lg bg-giro-vermelho/10 flex items-center justify-center flex-shrink-0">
+                        <span className="text-xs font-bold text-giro-vermelho">📦</span>
                       </div>
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 bg-giro-vermelho/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span className="text-xs font-bold text-giro-vermelho">P</span>
-                          </div>
-                          <span className="text-sm text-giro-texto-sec">Peças de moda</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <div className="w-9 h-9 bg-giro-turquesa/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <span className="text-xs font-bold text-giro-turquesa">Q</span>
-                          </div>
-                          <span className="text-sm text-giro-texto-sec">Quantidade</span>
-                        </div>
-                      </div>
+                      <h3 className="text-sm font-semibold text-giro-grafite">Estoque disponível</h3>
                     </div>
+                    <p className="text-xs text-giro-texto-sec">Peças, quantidade e categoria</p>
                   </div>
+                </div>
 
-                  {/* Arrow/Connection indicator */}
-                  <div className="mb-12 flex flex-col items-center">
-                    <div className="w-px h-8 bg-gradient-to-b from-giro-vermelho to-giro-turquesa mb-3"></div>
-                    <div className="w-8 h-8 bg-giro-vermelho rounded-full flex items-center justify-center shadow-md">
-                      <ArrowRight size={16} className="text-white" />
+                {/* Connection */}
+                <div className="flex justify-center mb-10">
+                  <div className="flex flex-col items-center">
+                    <div className="w-0.5 h-6 bg-giro-vermelho mb-2"></div>
+                    <div className="w-5 h-5 rounded-full bg-giro-vermelho flex items-center justify-center">
+                      <div className="w-2 h-2 rounded-full bg-white"></div>
                     </div>
-                    <div className="w-px h-8 bg-gradient-to-b from-giro-turquesa to-giro-vermelho mt-3"></div>
+                    <div className="w-0.5 h-6 bg-giro-vermelho mt-2"></div>
                   </div>
+                </div>
 
-                  {/* Bottom section: Nova oportunidade */}
-                  <div className="w-full max-w-sm">
-                    <div className="bg-white border border-giro-turquesa rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-                      <div className="flex items-center justify-between mb-4">
+                {/* Step 2: Opportunity */}
+                <div>
+                  <div className="bg-white border border-giro-turquesa rounded-xl p-5">
+                    <div className="flex items-center justify-between gap-3 mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-giro-turquesa/10 flex items-center justify-center flex-shrink-0">
+                          <span className="text-xs font-bold text-giro-turquesa">🤝</span>
+                        </div>
                         <h3 className="text-sm font-semibold text-giro-grafite">Nova oportunidade</h3>
-                        <div className="px-3 py-1.5 bg-giro-turquesa/10 rounded-lg text-xs font-semibold text-giro-turquesa">
-                          B2B
-                        </div>
                       </div>
-                      <div className="text-sm text-giro-texto-sec">
-                        Conexão de negócios criada pela plataforma
-                      </div>
+                      <span className="text-xs font-semibold px-2 py-1 bg-giro-turquesa/10 text-giro-turquesa rounded-md">B2B</span>
                     </div>
+                    <p className="text-xs text-giro-texto-sec">Conexão com interessados</p>
                   </div>
-
                 </div>
               </div>
             </div>
