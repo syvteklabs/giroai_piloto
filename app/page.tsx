@@ -42,16 +42,18 @@ export default function Home() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex gap-6 justify-center mb-20">
+          <div className="flex gap-6 justify-center mb-20" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
             <Link
               href="/participar"
-              className="btn-primary w-300px py-4 text-white rounded-lg font-semibold flex items-center justify-center gap-2 animate-icon-hover"
+              className="btn-primary py-4 text-white rounded-lg font-semibold flex items-center justify-center gap-2 animate-icon-hover"
+              style={{ width: '300px' }}
             >
               Tenho estoque parado <ArrowRight size={20} />
             </Link>
             <Link
               href="/oportunidades"
-              className="btn-secondary w-300px py-4 rounded-lg font-semibold flex items-center justify-center gap-2 animate-icon-hover"
+              className="btn-secondary py-4 rounded-lg font-semibold flex items-center justify-center gap-2 animate-icon-hover"
+              style={{ width: '300px' }}
             >
               Ver oportunidades <ArrowRight size={20} />
             </Link>
