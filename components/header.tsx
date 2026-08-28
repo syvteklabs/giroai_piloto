@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import { LogoGiro } from './logo-giro'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,12 +11,14 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-giro-borda shadow-sm">
       <nav className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition">
-          <LogoGiro size={40} />
-          <div className="hidden sm:flex flex-col">
-            <span className="font-bold text-lg text-giro-grafite leading-tight">Giro AÍ</span>
-            <span className="text-xs text-giro-texto-sec font-medium">Estoque que gira</span>
-          </div>
+        <Link href="/" className="flex items-center hover:opacity-80 transition">
+          <img
+            src="https://images.giroaihub.com/logo-giroai.png"
+            alt="Giro AI Logo"
+            width={220}
+            height={65}
+            className="w-auto h-12"
+          />
         </Link>
 
         {/* Desktop Menu */}
