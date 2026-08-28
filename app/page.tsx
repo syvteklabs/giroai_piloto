@@ -11,112 +11,105 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative bg-white overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-20 lg:py-24">
+        <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-24 lg:py-28">
           {/* Two-column layout: flex on desktop, stack on mobile */}
-          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
 
             {/* Left column: Content */}
-            <div className="flex-1 mb-12 lg:mb-0">
+            <div className="flex-1 mb-16 lg:mb-0">
               {/* Eyebrow */}
-              <div className="mb-6">
-                <span className="inline-block text-sm font-semibold text-giro-vermelho tracking-wider">
-                  ● ATIVAÇÃO AO VIVO · MERCO NOROESTE 2026
+              <div className="mb-8">
+                <span className="inline-block text-xs font-semibold text-giro-vermelho tracking-widest uppercase">
+                  ● Ativação ao vivo · Merco Noroeste 2026
                 </span>
               </div>
 
               {/* Main Heading */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-bold text-giro-grafite mb-6 leading-tight max-w-2xl">
+              <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-5xl xl:text-6xl font-bold text-giro-grafite mb-8 leading-tight">
                 Estoque parado pode virar <span className="text-giro-vermelho">negócio</span>.
               </h1>
 
               {/* Description */}
-              <p className="text-base sm:text-lg md:text-lg text-giro-texto-sec mb-8 leading-relaxed max-w-xl">
+              <p className="text-lg md:text-lg text-giro-texto-sec mb-12 leading-relaxed max-w-2xl">
                 O Giro AÍ conecta estoques de moda a novas oportunidades e ajuda a revelar onde esse desafio também aparece em outros setores.
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8">
+              <div className="flex flex-col sm:flex-row gap-4 mb-12">
                 <Link
                   href="/participar"
-                  className="px-6 sm:px-8 py-3 sm:py-4 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 flex items-center justify-center gap-2 transition transform hover:-translate-y-1 shadow-lg hover:shadow-xl whitespace-nowrap"
+                  className="inline-flex px-8 py-4 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 items-center justify-center gap-2 transition transform hover:-translate-y-1 shadow-md hover:shadow-lg whitespace-nowrap"
                 >
                   Tenho estoque parado <ArrowRight size={20} />
                 </Link>
                 <Link
                   href="/oportunidades"
-                  className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-giro-grafite text-giro-grafite rounded-lg font-semibold hover:bg-giro-grafite hover:text-white transition transform hover:-translate-y-1 whitespace-nowrap text-center"
+                  className="inline-flex px-8 py-4 border-2 border-giro-grafite text-giro-grafite rounded-lg font-semibold hover:bg-giro-grafite hover:text-white transition transform hover:-translate-y-1 items-center justify-center whitespace-nowrap"
                 >
                   Ver oportunidades
                 </Link>
               </div>
 
               {/* Social Proof */}
-              <p className="text-xs sm:text-sm text-giro-texto-sec">
+              <p className="text-sm text-giro-texto-sec font-medium">
                 Moda primeiro · Outros setores também podem participar
               </p>
             </div>
 
             {/* Right column: Visual Composition */}
-            <div className="flex-1 lg:flex-shrink-0 flex justify-center lg:justify-end">
-              <div className="w-full max-w-sm lg:max-w-none">
+            <div className="flex-1 lg:flex-shrink-0">
+              <div className="w-full">
                 {/* Visual composition container */}
-                <div className="relative h-80 sm:h-96 flex items-center justify-center">
+                <div className="relative flex flex-col items-center justify-center">
 
-                  {/* Background accent */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-giro-vermelho/5 to-giro-turquesa/5 rounded-2xl"></div>
-
-                  {/* Main composition grid */}
-                  <div className="relative w-full h-full flex flex-col justify-center items-center px-6 py-8">
-
-                    {/* Top section: Estoque disponível */}
-                    <div className="w-full max-w-xs mb-8">
-                      <div className="bg-white border-2 border-giro-borda rounded-xl p-5 shadow-sm">
-                        <div className="flex items-center justify-between mb-3">
-                          <h3 className="text-sm font-semibold text-giro-grafite">Estoque disponível</h3>
-                          <div className="w-2 h-2 bg-giro-vermelho rounded-full"></div>
+                  {/* Top section: Estoque disponível */}
+                  <div className="w-full max-w-sm mb-12">
+                    <div className="bg-white border border-giro-borda rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-sm font-semibold text-giro-grafite">Estoque disponível</h3>
+                        <div className="w-2 h-2 bg-giro-vermelho rounded-full"></div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 bg-giro-vermelho/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <span className="text-xs font-bold text-giro-vermelho">P</span>
+                          </div>
+                          <span className="text-sm text-giro-texto-sec">Peças de moda</span>
                         </div>
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-giro-vermelho/10 rounded flex items-center justify-center">
-                              <span className="text-xs font-bold text-giro-vermelho">P</span>
-                            </div>
-                            <span className="text-xs text-giro-texto-sec">Peças de moda</span>
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 bg-giro-turquesa/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <span className="text-xs font-bold text-giro-turquesa">Q</span>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-giro-turquesa/10 rounded flex items-center justify-center">
-                              <span className="text-xs font-bold text-giro-turquesa">Q</span>
-                            </div>
-                            <span className="text-xs text-giro-texto-sec">Quantidade</span>
-                          </div>
+                          <span className="text-sm text-giro-texto-sec">Quantidade</span>
                         </div>
                       </div>
                     </div>
-
-                    {/* Arrow/Connection indicator */}
-                    <div className="mb-8 flex flex-col items-center">
-                      <div className="w-1 h-6 bg-gradient-to-b from-giro-vermelho to-giro-turquesa rounded-full mb-2"></div>
-                      <div className="w-6 h-6 bg-giro-vermelho rounded-full flex items-center justify-center">
-                        <ArrowRight size={14} className="text-white" />
-                      </div>
-                      <div className="w-1 h-6 bg-gradient-to-b from-giro-turquesa to-giro-vermelho rounded-full mt-2"></div>
-                    </div>
-
-                    {/* Bottom section: Nova oportunidade */}
-                    <div className="w-full max-w-xs">
-                      <div className="bg-white border-2 border-giro-turquesa rounded-xl p-5 shadow-sm">
-                        <div className="flex items-center justify-between mb-3">
-                          <h3 className="text-sm font-semibold text-giro-grafite">Nova oportunidade</h3>
-                          <div className="px-2 py-1 bg-giro-turquesa/10 rounded text-xs font-semibold text-giro-turquesa">
-                            B2B
-                          </div>
-                        </div>
-                        <div className="text-xs text-giro-texto-sec">
-                          Conexão de negócios criada pela plataforma
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
+
+                  {/* Arrow/Connection indicator */}
+                  <div className="mb-12 flex flex-col items-center">
+                    <div className="w-px h-8 bg-gradient-to-b from-giro-vermelho to-giro-turquesa mb-3"></div>
+                    <div className="w-8 h-8 bg-giro-vermelho rounded-full flex items-center justify-center shadow-md">
+                      <ArrowRight size={16} className="text-white" />
+                    </div>
+                    <div className="w-px h-8 bg-gradient-to-b from-giro-turquesa to-giro-vermelho mt-3"></div>
+                  </div>
+
+                  {/* Bottom section: Nova oportunidade */}
+                  <div className="w-full max-w-sm">
+                    <div className="bg-white border border-giro-turquesa rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-sm font-semibold text-giro-grafite">Nova oportunidade</h3>
+                        <div className="px-3 py-1.5 bg-giro-turquesa/10 rounded-lg text-xs font-semibold text-giro-turquesa">
+                          B2B
+                        </div>
+                      </div>
+                      <div className="text-sm text-giro-texto-sec">
+                        Conexão de negócios criada pela plataforma
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
