@@ -37,16 +37,17 @@ export default function Home() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
+          <div className="flex gap-6 justify-center mb-20 max-w-2xl mx-auto px-4">
             <Link
               href="/participar"
-              className="w-full sm:w-[300px] px-8 py-5 bg-gradient-to-r from-giro-vermelho to-giro-vermelho/90 text-white rounded-xl font-semibold hover:from-giro-vermelho/90 hover:to-giro-vermelho/80 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-2 shadow-xl hover:shadow-2xl duration-300"
+              className="flex-1 px-8 py-6 bg-gradient-to-br from-giro-vermelho via-giro-vermelho to-giro-vermelho/95 text-white rounded-2xl font-bold text-lg hover:from-giro-vermelho/95 hover:via-giro-vermelho/90 hover:to-giro-vermelho/85 flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-2xl hover:shadow-3xl border border-giro-vermelho/20 group"
             >
-              Tenho estoque parado <ArrowRight size={20} />
+              <span>Tenho estoque parado</span>
+              <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               href="/oportunidades"
-              className="w-full sm:w-[300px] px-8 py-5 border-2 border-giro-vermelho text-giro-vermelho rounded-xl font-semibold bg-white hover:bg-giro-vermelho hover:text-white transition-all transform hover:-translate-y-2 shadow-lg hover:shadow-2xl duration-300"
+              className="flex-1 px-8 py-6 border-2 border-giro-vermelho text-giro-vermelho rounded-2xl font-bold text-lg bg-white hover:bg-giro-vermelho hover:text-white transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-2xl flex items-center justify-center group"
             >
               Ver oportunidades
             </Link>
