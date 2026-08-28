@@ -10,95 +10,83 @@ export default function Home() {
       <Header />
 
       {/* Hero */}
-      <section className="relative bg-white overflow-hidden border-b border-giro-borda">
-        <div className="max-w-6xl mx-auto px-4 py-20 sm:py-24 md:py-28 lg:py-32">
+      <section className="relative bg-white border-b border-giro-borda">
+        <div className="max-w-6xl mx-auto px-4 py-16 md:py-24">
 
           {/* Eyebrow */}
-          <div className="mb-6 md:mb-8">
-            <span className="inline-block text-xs md:text-xs font-semibold text-giro-vermelho tracking-wider">
+          <div className="mb-4">
+            <span className="text-xs font-semibold text-giro-vermelho tracking-wider">
               ● ATIVAÇÃO AO VIVO · MERCO NOROESTE 2026
             </span>
           </div>
 
-          {/* Main content grid - responsive */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Desktop: Two columns | Mobile: Single column */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
-            {/* Left column */}
-            <div className="flex flex-col justify-start">
+            {/* Left Column: Content */}
+            <div>
               {/* Heading */}
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-5xl font-bold text-giro-grafite mb-6 leading-snug">
+              <h1 className="text-4xl md:text-5xl font-bold text-giro-grafite mb-6 leading-tight">
                 Estoque parado pode virar <span className="text-giro-vermelho">negócio</span>.
               </h1>
 
               {/* Description */}
-              <p className="text-base sm:text-base md:text-base text-giro-texto-sec mb-10 leading-relaxed max-w-xl">
+              <p className="text-base text-giro-texto-sec mb-8 leading-relaxed">
                 O Giro AÍ conecta estoques de moda a novas oportunidades e ajuda a revelar onde esse desafio também aparece em outros setores.
               </p>
 
-              {/* CTA Buttons - side by side on desktop, stacked on mobile */}
-              <div className="flex flex-col sm:flex-row gap-3 mb-10 w-full sm:w-auto">
+              {/* Buttons - FIXED WIDTH */}
+              <div className="flex flex-col sm:flex-row gap-3 mb-8">
                 <Link
                   href="/participar"
-                  className="flex-1 sm:flex-none px-7 py-3 bg-giro-vermelho text-white text-center font-semibold rounded-lg hover:bg-giro-vermelho/90 transition shadow-md hover:shadow-lg"
+                  className="px-6 py-3 bg-giro-vermelho text-white font-semibold rounded-lg hover:bg-giro-vermelho/90 transition text-center whitespace-nowrap"
                 >
                   Tenho estoque parado
                 </Link>
                 <Link
                   href="/oportunidades"
-                  className="flex-1 sm:flex-none px-7 py-3 border border-giro-grafite text-giro-grafite text-center font-semibold rounded-lg hover:bg-giro-grafite hover:text-white transition"
+                  className="px-6 py-3 border border-giro-grafite text-giro-grafite font-semibold rounded-lg hover:bg-giro-grafite hover:text-white transition text-center whitespace-nowrap"
                 >
                   Ver oportunidades
                 </Link>
               </div>
 
-              {/* Social proof */}
-              <p className="text-xs sm:text-sm text-giro-texto-sec font-medium">
+              {/* Social Proof */}
+              <p className="text-xs text-giro-texto-sec">
                 Moda primeiro · Outros setores também podem participar
               </p>
             </div>
 
-            {/* Right column - Visual diagram */}
-            <div className="flex flex-col items-center lg:items-start justify-center">
-              <div className="w-full max-w-sm">
-                {/* Step 1: Stock */}
-                <div className="mb-10">
-                  <div className="bg-giro-claro border border-giro-borda rounded-xl p-5">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-8 h-8 rounded-lg bg-giro-vermelho/10 flex items-center justify-center flex-shrink-0">
-                        <span className="text-xs font-bold text-giro-vermelho">📦</span>
-                      </div>
-                      <h3 className="text-sm font-semibold text-giro-grafite">Estoque disponível</h3>
-                    </div>
-                    <p className="text-xs text-giro-texto-sec">Peças, quantidade e categoria</p>
+            {/* Right Column: Visual Diagram */}
+            <div className="hidden lg:flex flex-col items-center justify-center">
+              <div className="w-full max-w-xs space-y-8">
+
+                {/* Card 1 */}
+                <div className="bg-giro-claro border border-giro-borda rounded-lg p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded bg-giro-vermelho/10 flex items-center justify-center text-xs font-bold text-giro-vermelho">P</div>
+                    <h3 className="text-sm font-semibold text-giro-grafite">Estoque disponível</h3>
                   </div>
+                  <p className="text-xs text-giro-texto-sec">Peças, quantidade</p>
                 </div>
 
                 {/* Connection */}
-                <div className="flex justify-center mb-10">
-                  <div className="flex flex-col items-center">
-                    <div className="w-0.5 h-6 bg-giro-vermelho mb-2"></div>
-                    <div className="w-5 h-5 rounded-full bg-giro-vermelho flex items-center justify-center">
-                      <div className="w-2 h-2 rounded-full bg-white"></div>
-                    </div>
-                    <div className="w-0.5 h-6 bg-giro-vermelho mt-2"></div>
-                  </div>
+                <div className="flex justify-center">
+                  <div className="w-0.5 h-12 bg-giro-vermelho"></div>
                 </div>
 
-                {/* Step 2: Opportunity */}
-                <div>
-                  <div className="bg-white border border-giro-turquesa rounded-xl p-5">
-                    <div className="flex items-center justify-between gap-3 mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-giro-turquesa/10 flex items-center justify-center flex-shrink-0">
-                          <span className="text-xs font-bold text-giro-turquesa">🤝</span>
-                        </div>
-                        <h3 className="text-sm font-semibold text-giro-grafite">Nova oportunidade</h3>
-                      </div>
-                      <span className="text-xs font-semibold px-2 py-1 bg-giro-turquesa/10 text-giro-turquesa rounded-md">B2B</span>
+                {/* Card 2 */}
+                <div className="bg-white border border-giro-turquesa rounded-lg p-4">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded bg-giro-turquesa/10 flex items-center justify-center text-xs font-bold text-giro-turquesa">💼</div>
+                      <h3 className="text-sm font-semibold text-giro-grafite">Nova oportunidade</h3>
                     </div>
-                    <p className="text-xs text-giro-texto-sec">Conexão com interessados</p>
+                    <span className="text-xs font-semibold text-giro-turquesa bg-giro-turquesa/10 px-2 py-1 rounded">B2B</span>
                   </div>
+                  <p className="text-xs text-giro-texto-sec">Conexão de negócios</p>
                 </div>
+
               </div>
             </div>
 
