@@ -1,19 +1,8 @@
+@import './theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import './theme.css';
-
-:root {
-  --giro-grafite: #101418;
-  --giro-vermelho: #F51B2B;
-  --giro-turquesa: #10BFB5;
-  --giro-branco: #FFFFFF;
-  --giro-claro: #F6F8F9;
-  --giro-texto: #151A20;
-  --giro-texto-sec: #5B6470;
-  --giro-borda: #E5E7EB;
-}
 
 * {
   margin: 0;
