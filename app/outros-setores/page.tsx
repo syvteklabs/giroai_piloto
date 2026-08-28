@@ -1,11 +1,24 @@
 'use client'
 
+import type { Metadata } from 'next'
 import { Header } from '@/components/header'
 import { FormInput, FormSelect, FormTextarea } from '@/components/form-input'
 import { registroOutroSetorSchema } from '@/lib/validations'
 import { supabase } from '@/lib/supabase'
 import { useState } from 'react'
 import { CheckCircle, Loader, AlertCircle } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Registrar Setor | Giro AÍ - Expansão da Plataforma',
+  description: 'Registre seu setor na plataforma Giro AÍ. Indique interesse em expansão e ajude a revelar oportunidades em outros segmentos da economia.',
+  keywords: ['expansão setor', 'registrar interesse', 'outros setores', 'estoque parado', 'economia regional'],
+  openGraph: {
+    title: 'Registrar Setor | Giro AÍ',
+    description: 'Registre seu setor e interesse em expansão',
+    url: 'https://giroai.vercel.app/outros-setores',
+    type: 'website',
+  },
+}
 
 const quantidades = [
   { value: 'ate-100', label: 'Até 100 itens' },

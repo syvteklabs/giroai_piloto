@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /*.json$
+Disallow: /*.js$
+
+Sitemap: https://giroai.vercel.app/sitemap.xml

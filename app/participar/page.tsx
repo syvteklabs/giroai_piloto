@@ -1,8 +1,21 @@
 'use client'
 
+import type { Metadata } from 'next'
 import { Header } from '@/components/header'
 import Link from 'next/link'
 import { Shirt, TrendingUp, ArrowRight } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Participar | Giro AÍ - Cadastre seu Estoque',
+  description: 'Participe da plataforma Giro AÍ. Cadastre seu estoque de moda ou registre seu interesse em outros setores.',
+  keywords: ['cadastro estoque', 'participar giro ai', 'oportunidades moda'],
+  openGraph: {
+    title: 'Participar | Giro AÍ',
+    description: 'Cadastre seu estoque de moda ou registre seu interesse em outros setores',
+    url: 'https://giroai.vercel.app/participar',
+    type: 'website',
+  },
+}
 
 export default function Participar() {
   return (

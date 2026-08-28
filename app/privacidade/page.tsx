@@ -1,6 +1,19 @@
 'use client'
 
+import type { Metadata } from 'next'
 import { Header } from '@/components/header'
+
+export const metadata: Metadata = {
+  title: 'Política de Privacidade | Giro AÍ',
+  description: 'Leia a política de privacidade do Giro AÍ. Entenda como seus dados são protegidos e como a plataforma usa as informações coletadas.',
+  keywords: ['privacidade', 'política privacidade', 'proteção dados', 'LGPD'],
+  openGraph: {
+    title: 'Política de Privacidade | Giro AÍ',
+    description: 'Proteja seus dados. Leia nossa política de privacidade',
+    url: 'https://giroai.vercel.app/privacidade',
+    type: 'website',
+  },
+}
 
 export default function Privacidade() {
   return (

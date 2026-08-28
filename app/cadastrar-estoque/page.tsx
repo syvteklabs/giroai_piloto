@@ -1,11 +1,24 @@
 'use client'
 
+import type { Metadata } from 'next'
 import { Header } from '@/components/header'
 import { FormInput, FormSelect, FormTextarea } from '@/components/form-input'
 import { cadastroEstoqueSchema } from '@/lib/validations'
 import { supabase } from '@/lib/supabase'
 import { useState } from 'react'
 import { CheckCircle, Loader, AlertCircle } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Cadastrar Estoque | Giro AÍ - Publique seus Produtos',
+  description: 'Cadastre seu estoque de moda na plataforma Giro AÍ. Roupas, calçados, acessórios. Conecte com compradores qualificados.',
+  keywords: ['cadastrar estoque', 'vender estoque', 'plataforma moda', 'vitrine produtos', 'roupas à venda'],
+  openGraph: {
+    title: 'Cadastrar Estoque | Giro AÍ',
+    description: 'Cadastre seu estoque de moda e chegue aos compradores',
+    url: 'https://giroai.vercel.app/cadastrar-estoque',
+    type: 'website',
+  },
+}
 
 const categorias = [
   { value: 'roupas', label: 'Roupas' },

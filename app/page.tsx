@@ -3,9 +3,44 @@
 import { Header } from '@/components/header'
 import Link from 'next/link'
 import { ArrowRight, TrendingUp, MapPin, Users, Lock, BarChart3, Handshake } from 'lucide-react'
+import Script from 'next/script'
 
 export default function Home() {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Giro AÍ - Transforme estoque parado em oportunidades",
+    description: "Plataforma inovadora que conecta estoques de moda com novas oportunidades comerciais através de inteligência territorial",
+    url: "https://giroai.vercel.app",
+    mainEntity: {
+      "@type": "LocalBusiness",
+      name: "Giro AÍ",
+      description: "Plataforma de inteligência que revela oportunidades de negócio em estoques parados",
+      image: "https://giroai.vercel.app/og-image.jpg",
+    },
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Cadastro de Estoque",
+        description: "Cadastre seu estoque de moda e publique oportunidades",
+        url: "https://giroai.vercel.app/participar",
+      },
+      {
+        "@type": "Offer",
+        name: "Visualizar Oportunidades",
+        description: "Explore oportunidades de negócio no mercado",
+        url: "https://giroai.vercel.app/oportunidades",
+      },
+    ],
+  }
+
   return (
+    <>
+      <Script
+        id="schema-homepage"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
     <div className="min-h-screen flex flex-col">
       <Header />
 
@@ -236,5 +271,6 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </>
   )
 }

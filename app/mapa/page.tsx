@@ -1,10 +1,23 @@
 'use client'
 
+import type { Metadata } from 'next'
 import { Header } from '@/components/header'
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { buscarPorNome } from '@/lib/municipios'
 import { Loader } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Mapa | Giro AÍ - Inteligência Territorial',
+  description: 'Visualize o mapa territorial das oportunidades de moda e outros setores no Giro AÍ. Dados agregados em tempo real.',
+  keywords: ['mapa territorial', 'dados regionais', 'oportunidades moda', 'inteligência territorial'],
+  openGraph: {
+    title: 'Mapa | Giro AÍ - Inteligência Territorial',
+    description: 'Visualize oportunidades de moda por região',
+    url: 'https://giroai.vercel.app/mapa',
+    type: 'website',
+  },
+}
 
 interface MarkerData {
   cidade: string
