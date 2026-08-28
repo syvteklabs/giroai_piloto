@@ -1,7 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 const siteUrl = "https://giroai.vercel.app";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   title: "Giro AÍ - Inteligência que faz o estoque girar",
@@ -57,11 +63,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
   },
   appleWebApp: {
     capable: true,

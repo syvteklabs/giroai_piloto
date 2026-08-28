@@ -1,23 +1,10 @@
 'use client'
 
-import type { Metadata } from 'next'
 import { Header } from '@/components/header'
 import { supabase } from '@/lib/supabase'
 import { useEffect, useState } from 'react'
 import { Heart, MessageCircle, MapPin, Loader } from 'lucide-react'
 import type { ProdutoModa } from '@/types'
-
-export const metadata: Metadata = {
-  title: 'Oportunidades | Giro AÍ - Produtos de Moda com Desconto',
-  description: 'Encontre produtos de moda com preços especiais na plataforma Giro AÍ. Roupas, calçados e acessórios de estoques de empresas parceiras.',
-  keywords: ['oportunidades moda', 'produtos desconto', 'compra roupas', 'estoque moda', 'calçados'],
-  openGraph: {
-    title: 'Oportunidades | Giro AÍ - Produtos de Moda',
-    description: 'Encontre produtos de moda com preços especiais',
-    url: 'https://giroai.vercel.app/oportunidades',
-    type: 'website',
-  },
-}
 
 export default function Oportunidades() {
   const [produtos, setProdutos] = useState<
