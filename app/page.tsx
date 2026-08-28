@@ -10,76 +10,83 @@ export default function Home() {
       <Header />
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-giro-claro via-white to-white overflow-hidden min-h-[600px] flex flex-col justify-center">
-        {/* Premium background with layered decorative elements */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-giro-vermelho/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-giro-turquesa/10 rounded-full blur-3xl -ml-48 -mb-48"></div>
-          <div className="absolute top-1/2 right-1/4 w-48 h-48 bg-giro-vermelho/5 rounded-full blur-3xl"></div>
-        </div>
+      <section className="relative overflow-hidden min-h-[700px] flex flex-col justify-center">
+        {/* Premium gradient background - Dark + Brand colors */}
+        <div className="absolute inset-0 bg-gradient-to-br from-giro-grafite via-giro-grafite to-[#0a0d0f] z-0"></div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 py-32">
-          {/* Badge */}
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-giro-vermelho/10 rounded-full border border-giro-vermelho/20 backdrop-blur">
-              <span className="w-2 h-2 bg-giro-vermelho rounded-full animate-pulse"></span>
-              <span className="text-giro-vermelho font-semibold text-sm">
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-giro-vermelho/15 via-transparent to-giro-turquesa/15 z-0"></div>
+
+        {/* Geometric decorative elements with stronger presence */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-giro-vermelho/20 to-giro-vermelho/0 rounded-full blur-3xl -mr-96 -mt-96 z-0"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-giro-turquesa/20 to-giro-turquesa/0 rounded-full blur-3xl -ml-48 -mb-48 z-0"></div>
+        <div className="absolute top-1/3 right-1/3 w-[400px] h-[400px] bg-gradient-to-b from-giro-vermelho/10 to-transparent rounded-full blur-3xl z-0"></div>
+
+        {/* Grid pattern overlay for sophistication */}
+        <div className="absolute inset-0 opacity-5 z-0" style={{backgroundImage: 'linear-gradient(90deg, #fff 1px, transparent 1px), linear-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24">
+          {/* Badge with premium styling */}
+          <div className="flex justify-center mb-10">
+            <div className="inline-flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-lg rounded-full border border-white/20 shadow-lg">
+              <span className="w-2.5 h-2.5 bg-giro-vermelho rounded-full animate-pulse"></span>
+              <span className="text-white font-semibold text-sm">
                 ● ATIVAÇÃO AO VIVO · MERCO NOROESTE 2026
               </span>
             </div>
           </div>
 
-          {/* Heading */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-giro-grafite mb-6 text-center leading-tight">
-            Estoque parado pode virar <span className="text-giro-vermelho">negócio</span>.
+          {/* Main heading with strong contrast */}
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-white mb-8 text-center leading-tight max-w-5xl mx-auto">
+            Estoque parado pode virar <span className="block bg-gradient-to-r from-giro-vermelho via-giro-vermelho to-giro-turquesa bg-clip-text text-transparent">negócio</span>.
           </h1>
 
-          {/* Description */}
-          <p className="text-lg md:text-xl text-giro-texto-sec mb-12 max-w-2xl mx-auto text-center leading-relaxed">
+          {/* Subheading with better contrast */}
+          <p className="text-lg md:text-xl text-white/80 mb-12 max-w-3xl mx-auto text-center leading-relaxed font-light">
             O Giro AÍ conecta estoques de moda a novas oportunidades e revela onde esse desafio também aparece em outros setores da economia.
           </p>
 
-          {/* CTA Buttons - Fixed sizing */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20 w-full sm:w-auto">
+          {/* Premium CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-24 w-full sm:w-auto px-4 sm:px-0">
             <Link
               href="/participar"
-              className="px-8 py-3 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 flex items-center justify-center gap-2 transition duration-200 shadow hover:shadow-lg whitespace-nowrap"
+              className="group px-8 py-4 bg-gradient-to-r from-giro-vermelho to-giro-vermelho/90 text-white rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-giro-vermelho/50 flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-105 whitespace-nowrap border border-giro-vermelho/50"
             >
               <span>Tenho estoque parado</span>
-              <ArrowRight size={18} />
+              <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               href="/oportunidades"
-              className="px-8 py-3 border-2 border-giro-vermelho text-giro-vermelho rounded-lg font-semibold hover:bg-giro-vermelho/5 transition duration-200 whitespace-nowrap"
+              className="px-8 py-4 bg-white/10 backdrop-blur-lg text-white rounded-lg font-bold text-lg hover:bg-white/20 hover:shadow-xl flex items-center justify-center gap-3 transition-all duration-300 whitespace-nowrap border border-white/30 hover:border-white/50"
             >
               Ver oportunidades
             </Link>
           </div>
 
-          {/* Hero visual - 3 feature cards */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-white/50 backdrop-blur border border-giro-borda/50">
-              <div className="w-12 h-12 bg-giro-vermelho/10 rounded-lg flex items-center justify-center mb-3">
-                <TrendingUp className="text-giro-vermelho" size={24} />
+          {/* Feature cards with premium styling */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="group p-8 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:border-giro-vermelho/50 hover:bg-white/15 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-giro-vermelho/20 cursor-pointer">
+              <div className="w-14 h-14 bg-gradient-to-br from-giro-vermelho to-giro-vermelho/60 rounded-lg flex items-center justify-center mb-5 shadow-lg">
+                <TrendingUp className="text-white" size={28} />
               </div>
-              <h3 className="font-semibold text-giro-grafite mb-1">Monetize</h3>
-              <p className="text-sm text-giro-texto-sec">Transforme estoque em oportunidade</p>
+              <h3 className="font-bold text-white text-lg mb-2 group-hover:text-giro-vermelho transition">Monetize</h3>
+              <p className="text-white/70 group-hover:text-white/90 transition">Transforme estoque em oportunidade</p>
             </div>
 
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-white/50 backdrop-blur border border-giro-borda/50">
-              <div className="w-12 h-12 bg-giro-turquesa/10 rounded-lg flex items-center justify-center mb-3">
-                <MapPin className="text-giro-turquesa" size={24} />
+            <div className="group p-8 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:border-giro-turquesa/50 hover:bg-white/15 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-giro-turquesa/20 cursor-pointer">
+              <div className="w-14 h-14 bg-gradient-to-br from-giro-turquesa to-giro-turquesa/60 rounded-lg flex items-center justify-center mb-5 shadow-lg">
+                <MapPin className="text-white" size={28} />
               </div>
-              <h3 className="font-semibold text-giro-grafite mb-1">Localize</h3>
-              <p className="text-sm text-giro-texto-sec">Mapa territorial em tempo real</p>
+              <h3 className="font-bold text-white text-lg mb-2 group-hover:text-giro-turquesa transition">Localize</h3>
+              <p className="text-white/70 group-hover:text-white/90 transition">Mapa territorial em tempo real</p>
             </div>
 
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-white/50 backdrop-blur border border-giro-borda/50">
-              <div className="w-12 h-12 bg-giro-vermelho/10 rounded-lg flex items-center justify-center mb-3">
-                <Users className="text-giro-vermelho" size={24} />
+            <div className="group p-8 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:border-giro-vermelho/50 hover:bg-white/15 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-giro-vermelho/20 cursor-pointer">
+              <div className="w-14 h-14 bg-gradient-to-br from-giro-vermelho to-giro-vermelho/60 rounded-lg flex items-center justify-center mb-5 shadow-lg">
+                <Users className="text-white" size={28} />
               </div>
-              <h3 className="font-semibold text-giro-grafite mb-1">Conecte</h3>
-              <p className="text-sm text-giro-texto-sec">Rede de oportunidades</p>
+              <h3 className="font-bold text-white text-lg mb-2 group-hover:text-giro-vermelho transition">Conecte</h3>
+              <p className="text-white/70 group-hover:text-white/90 transition">Rede de oportunidades</p>
             </div>
           </div>
         </div>
