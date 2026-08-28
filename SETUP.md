@@ -28,9 +28,19 @@ supabase db push
 
 Após o setup, configure seu `.env.local`:
 ```bash
+# Copie o arquivo de exemplo
 cp .env.local.example .env.local
+
 # Edite com suas credenciais Supabase
+# Substitua os valores com sua URL e chave anônima
 ```
+
+Se o arquivo `.env.local` não existir, você verá um erro:
+```
+Invalid supabaseUrl: Must be a valid HTTP or HTTPS URL.
+```
+
+Para resolver, crie o arquivo `.env.local` com as variáveis corretas.
 
 ## 4. Vercel Deploy
 
