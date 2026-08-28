@@ -31,3 +31,89 @@ body {
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+@keyframes slideUp {
+  from {
+    transform: translateY(4px);
+    opacity: 0.95;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes iconSlide {
+  from {
+    transform: translateX(-2px);
+  }
+  to {
+    transform: translateX(2px);
+  }
+}
+
+.animate-icon-hover:hover svg {
+  animation: iconSlide 0.4s ease-in-out;
+}
+
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #F51B2B 0%, #E01422 100%);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 0 4px 15px rgba(245, 27, 43, 0.25);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(245, 27, 43, 0.35);
+  background: linear-gradient(135deg, #E01422 0%, #CC1119 100%);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-secondary {
+  position: relative;
+  border: 2px solid #F51B2B;
+  color: #F51B2B;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+}
+
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #F51B2B;
+  transition: left 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: -1;
+}
+
+.btn-secondary:hover {
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(245, 27, 43, 0.2);
+  border-color: #F51B2B;
+}
+
+.btn-secondary:hover::before {
+  left: 0;
+}

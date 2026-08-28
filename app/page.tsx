@@ -40,15 +40,15 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
             <Link
               href="/participar"
-              className="px-8 py-4 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 flex items-center justify-center gap-2 transition transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
+              className="btn-primary px-8 py-4 text-white rounded-lg font-semibold flex items-center justify-center gap-2 animate-icon-hover"
             >
               Tenho estoque parado <ArrowRight size={20} />
             </Link>
             <Link
               href="/oportunidades"
-              className="px-8 py-4 border-2 border-giro-vermelho text-giro-vermelho rounded-lg font-semibold hover:bg-giro-vermelho hover:text-white transition transform hover:-translate-y-1"
+              className="btn-secondary px-8 py-4 rounded-lg font-semibold flex items-center justify-center gap-2 animate-icon-hover"
             >
-              Ver oportunidades
+              Ver oportunidades <ArrowRight size={20} />
             </Link>
           </div>
 
