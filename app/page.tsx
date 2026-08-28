@@ -37,16 +37,16 @@ export default function Home() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
             <Link
               href="/participar"
-              className="px-8 py-4 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 flex items-center justify-center gap-2 transition transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
+              className="w-full sm:w-[300px] px-8 py-5 bg-gradient-to-r from-giro-vermelho to-giro-vermelho/90 text-white rounded-xl font-semibold hover:from-giro-vermelho/90 hover:to-giro-vermelho/80 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-2 shadow-xl hover:shadow-2xl duration-300"
             >
               Tenho estoque parado <ArrowRight size={20} />
             </Link>
             <Link
               href="/oportunidades"
-              className="px-8 py-4 border-2 border-giro-vermelho text-giro-vermelho rounded-lg font-semibold hover:bg-giro-vermelho hover:text-white transition transform hover:-translate-y-1"
+              className="w-full sm:w-[300px] px-8 py-5 border-2 border-giro-vermelho text-giro-vermelho rounded-xl font-semibold bg-white hover:bg-giro-vermelho hover:text-white transition-all transform hover:-translate-y-2 shadow-lg hover:shadow-2xl duration-300"
             >
               Ver oportunidades
             </Link>
