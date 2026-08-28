@@ -42,9 +42,7 @@ export default function CadastrarEstoque() {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
-      [name]: name.includes('quantidade') || name.includes('preco')
-        ? value ? parseFloat(value) : ''
-        : value,
+      [name]: value,
     }))
     if (errors[name]) {
       setErrors((prev) => {
@@ -61,7 +59,7 @@ export default function CadastrarEstoque() {
     setLoading(true)
 
     try {
-      // Validar com Zod
+      // Validar com Zod (schema coerce strings para numbers automaticamente)
       const validated = cadastroEstoqueSchema.parse(formData)
 
       // 1. Inserir empresa

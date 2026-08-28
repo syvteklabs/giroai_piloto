@@ -16,9 +16,9 @@ export const cadastroEstoqueSchema = z.object({
     'bolsas',
     'outros',
   ]),
-  quantidade: z.number().int().min(1, 'Quantidade deve ser maior que 0'),
-  preco_minimo: z.number().min(0, 'Preço mínimo obrigatório'),
-  preco_maximo: z.number().min(0, 'Preço máximo obrigatório'),
+  quantidade: z.coerce.number().int().min(1, 'Quantidade deve ser maior que 0'),
+  preco_minimo: z.coerce.number().min(0, 'Preço mínimo obrigatório'),
+  preco_maximo: z.coerce.number().min(0, 'Preço máximo obrigatório'),
 })
 
 export type CadastroEstoque = z.infer<typeof cadastroEstoqueSchema>
