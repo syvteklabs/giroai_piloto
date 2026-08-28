@@ -117,3 +117,7 @@ body {
 .btn-secondary:hover::before {
   left: 0;
 }
+
+.w-300px {
+  width: 300px;
+}

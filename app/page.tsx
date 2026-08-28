@@ -16,6 +16,11 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-giro-turquesa/5 rounded-full blur-3xl -ml-48 -mb-48"></div>
 
         <div className="relative max-w-6xl mx-auto px-4 py-32">
+          {/* Logo */}
+          <div className="flex justify-center mb-8">
+            <img src="https://images.giroaihub.com/logo-giroai.png" alt="Giro AI Logo" width={220} height={65} />
+          </div>
+
           {/* Badge */}
           <div className="flex justify-center mb-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-giro-vermelho/10 rounded-full border border-giro-vermelho/20">
@@ -37,16 +42,16 @@ export default function Home() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
+          <div className="flex gap-6 justify-center mb-20">
             <Link
               href="/participar"
-              className="btn-primary px-8 py-4 text-white rounded-lg font-semibold flex items-center justify-center gap-2 animate-icon-hover"
+              className="btn-primary w-300px py-4 text-white rounded-lg font-semibold flex items-center justify-center gap-2 animate-icon-hover"
             >
               Tenho estoque parado <ArrowRight size={20} />
             </Link>
             <Link
               href="/oportunidades"
-              className="btn-secondary px-8 py-4 rounded-lg font-semibold flex items-center justify-center gap-2 animate-icon-hover"
+              className="btn-secondary w-300px py-4 rounded-lg font-semibold flex items-center justify-center gap-2 animate-icon-hover"
             >
               Ver oportunidades <ArrowRight size={20} />
             </Link>
