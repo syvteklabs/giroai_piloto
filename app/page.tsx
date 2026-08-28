@@ -10,17 +10,21 @@ export default function Home() {
       <Header />
 
       {/* Hero */}
-      <section className="relative bg-gradient-to-br from-giro-claro via-white to-giro-branco/5 overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-giro-vermelho/5 rounded-full blur-3xl -mr-48 -mt-48"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-giro-turquesa/5 rounded-full blur-3xl -ml-48 -mb-48"></div>
+      <section className="relative bg-white overflow-hidden">
+        {/* Background gradient with mesh effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-giro-claro via-white to-white"></div>
 
-        <div className="relative max-w-6xl mx-auto px-4 py-32">
+        {/* Decorative blurred circles - more prominent */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-giro-vermelho/8 rounded-full blur-3xl -mr-32 -mt-32"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-giro-turquesa/8 rounded-full blur-3xl -ml-32 -mb-32"></div>
+        <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-giro-turquesa/5 rounded-full blur-3xl"></div>
+
+        <div className="relative max-w-6xl mx-auto px-4 py-32 md:py-40">
           {/* Badge */}
           <div className="flex justify-center mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-giro-vermelho/10 rounded-full border border-giro-vermelho/20">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-giro-vermelho/15 rounded-full border border-giro-vermelho/30 backdrop-blur-sm">
               <span className="w-2 h-2 bg-giro-vermelho rounded-full animate-pulse"></span>
-              <span className="text-giro-vermelho font-semibold text-sm">
+              <span className="text-giro-vermelho font-semibold text-xs md:text-sm">
                 ● ATIVAÇÃO AO VIVO · MERCO NOROESTE 2026
               </span>
             </div>
@@ -40,13 +44,14 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
             <Link
               href="/participar"
-              className="px-8 py-4 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 flex items-center justify-center gap-2 transition transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
+              className="px-6 md:px-8 py-3 md:py-3 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/95 flex items-center justify-center gap-2 transition-all duration-200 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg active:translate-y-0.5"
             >
-              Tenho estoque parado <ArrowRight size={20} />
+              <span>Tenho estoque parado</span>
+              <ArrowRight size={18} />
             </Link>
             <Link
               href="/oportunidades"
-              className="px-8 py-4 border-2 border-giro-vermelho text-giro-vermelho rounded-lg font-semibold hover:bg-giro-vermelho hover:text-white transition transform hover:-translate-y-1"
+              className="px-6 md:px-8 py-3 md:py-3 border-2 border-giro-vermelho text-giro-vermelho rounded-lg font-semibold hover:bg-giro-vermelho/5 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0.5"
             >
               Ver oportunidades
             </Link>
