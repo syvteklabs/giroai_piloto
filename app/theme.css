@@ -1,0 +1,77 @@
+/* Force Tailwind to generate color classes */
+@layer utilities {
+  .text-giro-grafite {
+    @apply text-[#101418];
+  }
+  .text-giro-vermelho {
+    @apply text-[#F51B2B];
+  }
+  .text-giro-turquesa {
+    @apply text-[#10BFB5];
+  }
+  .text-giro-branco {
+    @apply text-[#FFFFFF];
+  }
+  .text-giro-claro {
+    @apply text-[#F6F8F9];
+  }
+  .text-giro-texto {
+    @apply text-[#151A20];
+  }
+  .text-giro-texto-sec {
+    @apply text-[#5B6470];
+  }
+  .text-giro-borda {
+    @apply text-[#E5E7EB];
+  }
+
+  .bg-giro-grafite {
+    @apply bg-[#101418];
+  }
+  .bg-giro-vermelho {
+    @apply bg-[#F51B2B];
+  }
+  .bg-giro-turquesa {
+    @apply bg-[#10BFB5];
+  }
+  .bg-giro-branco {
+    @apply bg-[#FFFFFF];
+  }
+  .bg-giro-claro {
+    @apply bg-[#F6F8F9];
+  }
+  .bg-giro-texto {
+    @apply bg-[#151A20];
+  }
+  .bg-giro-texto-sec {
+    @apply bg-[#5B6470];
+  }
+  .bg-giro-borda {
+    @apply bg-[#E5E7EB];
+  }
+
+  .border-giro-grafite {
+    @apply border-[#101418];
+  }
+  .border-giro-vermelho {
+    @apply border-[#F51B2B];
+  }
+  .border-giro-turquesa {
+    @apply border-[#10BFB5];
+  }
+  .border-giro-branco {
+    @apply border-[#FFFFFF];
+  }
+  .border-giro-claro {
+    @apply border-[#F6F8F9];
+  }
+  .border-giro-texto {
+    @apply border-[#151A20];
+  }
+  .border-giro-texto-sec {
+    @apply border-[#5B6470];
+  }
+  .border-giro-borda {
+    @apply border-[#E5E7EB];
+  }
+}
