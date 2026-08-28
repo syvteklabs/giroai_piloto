@@ -3,62 +3,96 @@
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import { LogoGiro } from './logo-giro'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 bg-giro-branco border-b border-giro-borda h-[72px] flex items-center">
-      <nav className="w-full max-w-[1180px] mx-auto px-4 flex items-center justify-between h-full">
+    <header className="sticky top-0 z-50 bg-white border-b border-giro-borda shadow-sm">
+      <nav className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-10 h-10 bg-giro-vermelho rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">G</span>
+        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition">
+          <LogoGiro size={40} />
+          <div className="hidden sm:flex flex-col">
+            <span className="font-bold text-lg text-giro-grafite leading-tight">Giro AÍ</span>
+            <span className="text-xs text-giro-texto-sec font-medium">Estoque que gira</span>
           </div>
-          <span className="font-bold text-lg text-giro-grafite hidden sm:inline whitespace-nowrap">Giro AÍ</span>
         </Link>
 
-        {/* Menu toggle mobile */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-giro-grafite ml-auto"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-        {/* Navigation */}
-        <div className={`${isOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row gap-8 absolute md:static top-[72px] left-0 right-0 bg-giro-branco md:bg-transparent p-4 md:p-0 border-b md:border-0 border-giro-borda z-40 md:z-auto md:ml-auto`}>
-          <Link
-            href="/#como-funciona"
-            className="text-giro-texto-sec hover:text-giro-vermelho transition font-medium"
-            onClick={() => setIsOpen(false)}
-          >
-            Como funciona
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-8">
+          <Link href="/participar" className="text-giro-texto font-medium hover:text-giro-vermelho transition duration-200">
+            Participar
           </Link>
-          <Link
-            href="/oportunidades"
-            className="text-giro-texto-sec hover:text-giro-vermelho transition font-medium"
-            onClick={() => setIsOpen(false)}
-          >
+          <Link href="/oportunidades" className="text-giro-texto font-medium hover:text-giro-vermelho transition duration-200">
             Oportunidades
           </Link>
+          <Link href="/mapa" className="text-giro-texto font-medium hover:text-giro-vermelho transition duration-200">
+            Mapa
+          </Link>
+          <Link href="/privacidade" className="text-giro-texto font-medium hover:text-giro-vermelho transition duration-200">
+            Privacidade
+          </Link>
           <Link
-            href="/cadastrar-estoque"
-            className="text-giro-texto-sec hover:text-giro-vermelho transition font-medium"
-            onClick={() => setIsOpen(false)}
+            href="/participar"
+            className="px-6 py-2 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 transition"
           >
-            Cadastrar estoque
+            Começar
           </Link>
         </div>
 
-        {/* CTA Button */}
-        <Link
-          href="/oportunidades"
-          className="hidden md:block ml-8 px-6 py-2.5 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-opacity-90 transition text-sm flex-shrink-0 whitespace-nowrap"
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-giro-grafite hover:text-giro-vermelho transition"
+          aria-label="Toggle menu"
         >
-          Explorar oportunidades
-        </Link>
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="absolute top-full left-0 right-0 bg-white border-b border-giro-borda shadow-lg md:hidden">
+            <div className="flex flex-col p-4 gap-4 max-w-6xl mx-auto w-full">
+              <Link
+                href="/participar"
+                className="text-giro-texto font-medium hover:text-giro-vermelho transition py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Participar
+              </Link>
+              <Link
+                href="/oportunidades"
+                className="text-giro-texto font-medium hover:text-giro-vermelho transition py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Oportunidades
+              </Link>
+              <Link
+                href="/mapa"
+                className="text-giro-texto font-medium hover:text-giro-vermelho transition py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Mapa
+              </Link>
+              <Link
+                href="/privacidade"
+                className="text-giro-texto font-medium hover:text-giro-vermelho transition py-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Privacidade
+              </Link>
+              <Link
+                href="/participar"
+                className="px-6 py-2 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 transition text-center"
+                onClick={() => setIsOpen(false)}
+              >
+                Começar
+              </Link>
+            </div>
+          </div>
+        )}
       </nav>
     </header>
   )

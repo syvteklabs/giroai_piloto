@@ -1,15 +1,8 @@
-@import "tailwindcss";
+@import './theme.css';
 
-@theme {
-  --color-giro-grafite: #101418;
-  --color-giro-vermelho: #f51b2b;
-  --color-giro-turquesa: #10bfb5;
-  --color-giro-branco: #ffffff;
-  --color-giro-claro: #f6f8f9;
-  --color-giro-texto: #151a20;
-  --color-giro-texto-sec: #5b6470;
-  --color-giro-borda: #e5e7eb;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   margin: 0;
@@ -22,5 +15,19 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", sans-serif;
+  line-height: 1.6;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

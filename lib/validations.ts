@@ -3,7 +3,9 @@ import { z } from 'zod'
 export const cadastroEstoqueSchema = z.object({
   nomeEmpresa: z.string().min(3, 'Nome da empresa obrigatório'),
   email: z.string().email('Email inválido'),
-  telefone: z.string().min(10, 'Telefone deve ter pelo menos 10 dígitos'),
+  telefone: z.string()
+    .min(10, 'Telefone deve ter pelo menos 10 dígitos')
+    .regex(/^[\d\s()+-]+$/, 'Telefone deve conter apenas dígitos, espaços, parênteses ou hífens'),
   cidade: z.string().min(2, 'Cidade obrigatória'),
   titulo: z.string().min(5, 'Título do produto obrigatório'),
   descricao: z.string().min(10, 'Descrição obrigatória'),
@@ -19,7 +21,13 @@ export const cadastroEstoqueSchema = z.object({
   quantidade: z.number().int().min(1, 'Quantidade deve ser maior que 0'),
   preco_minimo: z.number().min(0, 'Preço mínimo obrigatório'),
   preco_maximo: z.number().min(0, 'Preço máximo obrigatório'),
-})
+}).refine(
+  (data) => data.preco_minimo <= data.preco_maximo,
+  {
+    message: 'Preço mínimo não pode ser maior que máximo',
+    path: ['preco_maximo']
+  }
+)
 
 export type CadastroEstoque = z.infer<typeof cadastroEstoqueSchema>
 
