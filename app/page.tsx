@@ -10,36 +10,73 @@ export default function Home() {
       <Header />
 
       {/* Hero */}
-      <section className="bg-gradient-to-b from-giro-claro via-white to-white">
-        <div className="max-w-6xl mx-auto px-4 py-24 text-center">
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-giro-vermelho/10 rounded-full">
-            <span className="w-2 h-2 bg-giro-vermelho rounded-full animate-pulse"></span>
-            <span className="text-giro-vermelho font-semibold text-sm">
-              ● ATIVAÇÃO AO VIVO · MERCO NOROESTE 2026
-            </span>
+      <section className="relative bg-gradient-to-br from-giro-claro via-white to-giro-branco/5 overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-giro-vermelho/5 rounded-full blur-3xl -mr-48 -mt-48"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-giro-turquesa/5 rounded-full blur-3xl -ml-48 -mb-48"></div>
+
+        <div className="relative max-w-6xl mx-auto px-4 py-32">
+          {/* Badge */}
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-giro-vermelho/10 rounded-full border border-giro-vermelho/20">
+              <span className="w-2 h-2 bg-giro-vermelho rounded-full animate-pulse"></span>
+              <span className="text-giro-vermelho font-semibold text-sm">
+                ● ATIVAÇÃO AO VIVO · MERCO NOROESTE 2026
+              </span>
+            </div>
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-bold text-giro-grafite mb-6">
-            Estoque parado pode virar negócio.
+          {/* Heading */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-giro-grafite mb-6 text-center leading-tight">
+            Estoque parado pode virar <span className="text-giro-vermelho">negócio</span>.
           </h1>
 
-          <p className="text-xl text-giro-texto-sec mb-8 max-w-2xl mx-auto">
+          {/* Description */}
+          <p className="text-lg md:text-xl text-giro-texto-sec mb-12 max-w-2xl mx-auto text-center leading-relaxed">
             O Giro AÍ conecta estoques de moda a novas oportunidades e revela onde esse desafio também aparece em outros setores da economia.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
             <Link
               href="/participar"
-              className="px-8 py-3 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 flex items-center justify-center gap-2 transition transform hover:-translate-y-1"
+              className="px-8 py-4 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 flex items-center justify-center gap-2 transition transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
             >
               Tenho estoque parado <ArrowRight size={20} />
             </Link>
             <Link
               href="/oportunidades"
-              className="px-8 py-3 border-2 border-giro-vermelho text-giro-vermelho rounded-lg font-semibold hover:bg-giro-vermelho hover:text-white transition"
+              className="px-8 py-4 border-2 border-giro-vermelho text-giro-vermelho rounded-lg font-semibold hover:bg-giro-vermelho hover:text-white transition transform hover:-translate-y-1"
             >
               Ver oportunidades
             </Link>
+          </div>
+
+          {/* Hero visual - 3 feature cards */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-white/50 backdrop-blur border border-giro-borda/50">
+              <div className="w-12 h-12 bg-giro-vermelho/10 rounded-lg flex items-center justify-center mb-3">
+                <TrendingUp className="text-giro-vermelho" size={24} />
+              </div>
+              <h3 className="font-semibold text-giro-grafite mb-1">Monetize</h3>
+              <p className="text-sm text-giro-texto-sec">Transforme estoque em oportunidade</p>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-white/50 backdrop-blur border border-giro-borda/50">
+              <div className="w-12 h-12 bg-giro-turquesa/10 rounded-lg flex items-center justify-center mb-3">
+                <MapPin className="text-giro-turquesa" size={24} />
+              </div>
+              <h3 className="font-semibold text-giro-grafite mb-1">Localize</h3>
+              <p className="text-sm text-giro-texto-sec">Mapa territorial em tempo real</p>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-white/50 backdrop-blur border border-giro-borda/50">
+              <div className="w-12 h-12 bg-giro-vermelho/10 rounded-lg flex items-center justify-center mb-3">
+                <Users className="text-giro-vermelho" size={24} />
+              </div>
+              <h3 className="font-semibold text-giro-grafite mb-1">Conecte</h3>
+              <p className="text-sm text-giro-texto-sec">Rede de oportunidades</p>
+            </div>
           </div>
         </div>
       </section>
