@@ -4,7 +4,8 @@ import { Header } from '@/components/header'
 import { FormInput, FormSelect, FormTextarea } from '@/components/form-input'
 import { cadastroEstoqueSchema } from '@/lib/validations'
 import { supabase } from '@/lib/supabase'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { CheckCircle, Loader, AlertCircle } from 'lucide-react'
 
 const categorias = [
@@ -18,6 +19,7 @@ const categorias = [
 ]
 
 export default function CadastrarEstoque() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     nomeEmpresa: '',
     email: '',
@@ -35,6 +37,16 @@ export default function CadastrarEstoque() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [statusMsg, setStatusMsg] = useState('')
+
+  useEffect(() => {
+    if (!success) return
+
+    const timer = setTimeout(() => {
+      router.push('/oportunidades')
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [success, router])
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -102,8 +114,7 @@ export default function CadastrarEstoque() {
       if (produtoError) throw new Error(produtoError.message)
 
       setSuccess(true)
-      setStatusMsg('✓ Cadastro recebido! Analisaremos em breve.')
-      setTimeout(() => setSuccess(false), 5000)
+      setStatusMsg('✓ Cadastro recebido! Redirecionando...')
       setFormData({
         nomeEmpresa: '',
         email: '',
