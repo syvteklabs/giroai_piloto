@@ -107,7 +107,7 @@ export default function Mapa() {
   }, [])
 
   useEffect(() => {
-    if (!containerRef.current || loading || !marcadores.size) return
+    if (!containerRef.current || loading) return
 
     const initMap = async () => {
       try {
@@ -183,10 +183,10 @@ export default function Mapa() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <section className="flex-1 bg-white min-h-screen flex flex-col">
-        <div className="flex-1 flex flex-col">
+      <section className="flex-1 bg-white flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col overflow-hidden">
           {/* Header do Mapa */}
-          <div className="bg-giro-claro px-4 py-4 border-b border-giro-borda">
+          <div className="bg-giro-claro px-4 py-4 border-b border-giro-borda flex-shrink-0">
             <h1 className="text-2xl font-bold text-giro-grafite mb-1">
               Mapa Regional Giro AÍ
             </h1>
@@ -195,23 +195,23 @@ export default function Mapa() {
             </p>
           </div>
 
-          <div className="flex-1 flex flex-col md:flex-row gap-4 p-4 min-h-0">
+          <div className="flex-1 flex flex-col md:flex-row gap-4 p-4 min-h-0 overflow-hidden">
             {/* Mapa */}
-            <div className="flex-1 rounded-lg border border-giro-borda overflow-hidden">
+            <div className="flex-1 rounded-lg border border-giro-borda overflow-hidden flex flex-col">
               {loading ? (
-                <div className="w-full h-96 md:h-full flex items-center justify-center bg-giro-claro">
+                <div className="w-full flex-1 flex items-center justify-center bg-giro-claro">
                   <Loader className="animate-spin text-giro-vermelho" size={32} />
                 </div>
               ) : (
                 <div
                   ref={containerRef}
-                  className="w-full h-96 md:h-full"
+                  className="w-full flex-1"
                 />
               )}
             </div>
 
             {/* Panel de Info */}
-            <div className="md:w-80 bg-giro-claro rounded-lg p-4 border border-giro-borda overflow-y-auto h-96 md:h-auto">
+            <div className="md:w-80 bg-giro-claro rounded-lg p-4 border border-giro-borda overflow-y-auto h-96 md:h-auto flex-shrink-0">
               <h2 className="font-bold text-giro-grafite mb-4">Legenda</h2>
 
               <div className="space-y-3 mb-6">
