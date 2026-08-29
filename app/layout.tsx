@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { JsonLdSchema } from "@/components/json-ld-schema";
-import { organizationSchema } from "@/lib/schemas";
 
 export const metadata: Metadata = {
   title: "Giro AÍ - Inteligência que faz o estoque girar",
@@ -34,12 +32,6 @@ export const metadata: Metadata = {
     images: ["https://images.giroaihub.com/giroai-b2b.png"],
   },
 
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
-
   robots: {
     index: true,
     follow: true,
@@ -56,9 +48,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
-      <head>
-        <JsonLdSchema data={organizationSchema} />
-      </head>
       <body className="bg-giro-claro text-giro-texto antialiased">
         {children}
       </body>
