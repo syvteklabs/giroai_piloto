@@ -18,10 +18,10 @@ export default function Home() {
         <div className="relative max-w-6xl mx-auto px-4 py-32">
           {/* Badge */}
           <div className="flex justify-center mb-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-giro-vermelho/10 rounded-full border border-giro-vermelho/20">
-              <span className="w-2 h-2 bg-giro-vermelho rounded-full animate-pulse"></span>
-              <span className="text-giro-vermelho font-semibold text-sm">
-                ● ATIVAÇÃO AO VIVO · MERCO NOROESTE 2026
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-giro-turquesa/10 rounded-full border border-giro-turquesa/20">
+              <span className="w-2 h-2 bg-giro-turquesa rounded-full animate-pulse"></span>
+              <span className="text-giro-turquesa font-semibold text-sm">
+                ● PILOTO EM VALIDAÇÃO
               </span>
             </div>
           </div>
