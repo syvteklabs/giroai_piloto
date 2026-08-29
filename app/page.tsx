@@ -21,7 +21,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-giro-vermelho/10 rounded-full border border-giro-vermelho/20">
               <span className="w-2 h-2 bg-giro-vermelho rounded-full animate-pulse"></span>
               <span className="text-giro-vermelho font-semibold text-sm">
-                ● ATIVAÇÃO AO VIVO · MERCO NOROESTE 2026
+                ● PILOTO EM DESENVOLVIMENTO · MERCO NOROESTE 2026
               </span>
             </div>
           </div>
@@ -37,7 +37,7 @@ export default function Home() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
+          <div className="flex flex-row gap-4 justify-center mb-20">
             <Link
               href="/participar"
               className="px-8 py-4 bg-giro-vermelho text-white rounded-lg font-semibold hover:bg-giro-vermelho/90 flex items-center justify-center gap-2 transition transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
