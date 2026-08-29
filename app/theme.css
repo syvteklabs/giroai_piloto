@@ -418,6 +418,7 @@
 .z-40 { z-index: 40; }
 .z-50 { z-index: 50; }
 .z-auto { z-index: auto; }
+.-z-1 { z-index: -1; }
 
 /* ============================================================================
    FLEX PROPERTIES
@@ -566,4 +567,28 @@
 
 .shadow-button:active {
   box-shadow: 0 2px 6px rgba(245, 27, 43, 0.1);
+}
+
+/* ============================================================================
+   GROUP HOVER EFFECTS - Interactive button effects
+   ============================================================================ */
+
+.group:hover .group-hover\:translate-x-1 {
+  transform: translateX(0.25rem);
+}
+
+.group:hover .group-hover\:bg-giro-vermelho {
+  background-color: #F51B2B;
+}
+
+.group:hover .group-hover\:text-white {
+  color: #FFFFFF;
+}
+
+.group:hover .group-hover\:translate-x-full {
+  transform: translateX(100%);
+}
+
+.group:hover .group-hover\:-translate-x-full {
+  transform: translateX(-100%);
 }

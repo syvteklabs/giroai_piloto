@@ -37,18 +37,21 @@ export default function Home() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
+          <div className="flex flex-row gap-4 justify-center items-center mb-20 flex-wrap">
             <Link
               href="/participar"
-              className="px-8 py-4 bg-giro-vermelho text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl active:scale-95 shadow-lg hover:-translate-y-1"
+              className="px-8 py-4 bg-giro-vermelho text-white rounded-lg font-semibold flex items-center justify-center gap-2 no-underline transition-all duration-300 shadow-lg hover:shadow-2xl hover:bg-giro-vermelho/85 hover:-translate-y-1 active:scale-95 relative overflow-hidden group"
             >
-              Tenho estoque parado <ArrowRight size={20} />
+              <span className="relative z-10">Tenho estoque parado</span>
+              <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
             <Link
               href="/oportunidades"
-              className="px-8 py-4 border-2 border-giro-vermelho text-giro-vermelho bg-white/0 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-giro-vermelho/5 active:scale-95 hover:-translate-y-1"
+              className="px-8 py-4 border-2 border-giro-vermelho text-giro-vermelho rounded-lg font-semibold no-underline transition-all duration-300 hover:bg-giro-vermelho hover:text-white hover:shadow-lg hover:-translate-y-1 active:scale-95 relative overflow-hidden group"
             >
-              Ver oportunidades
+              <span className="relative z-10">Ver oportunidades</span>
+              <div className="absolute inset-0 bg-giro-vermelho/0 group-hover:bg-giro-vermelho transition-colors duration-300 -z-1"></div>
             </Link>
           </div>
 
