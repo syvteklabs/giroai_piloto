@@ -16,8 +16,8 @@ export function Header() {
           <Image
             src="https://images.giroaihub.com/logo-giroai.png"
             alt="Giro AÍ"
-            width={40}
-            height={40}
+            width={220}
+            height={65}
             className="object-contain"
           />
           <div className="hidden sm:flex flex-col">
