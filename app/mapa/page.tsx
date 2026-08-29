@@ -117,7 +117,8 @@ export default function Mapa() {
           mapRef.current.remove()
         }
 
-        mapRef.current = L.map(containerRef.current!).setView([-27.5, -55.5], 8)
+        // Focar no Rio de Janeiro: [-22.5, -43.5] com zoom 8
+        mapRef.current = L.map(containerRef.current!).setView([-22.5, -43.5], 8)
 
         L.tileLayer(
           'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -126,6 +127,19 @@ export default function Mapa() {
             maxZoom: 19,
           }
         ).addTo(mapRef.current)
+
+        // Adicionar marcador especial para Itaperuna
+        const itaperunaMarker = L.marker([-20.27, -41.66], {
+          icon: L.icon({
+            iconUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40"%3E%3Cpath d="M16 0C9.4 0 4 5.4 4 12c0 10 12 28 12 28s12-18 12-28c0-6.6-5.4-12-12-12z" fill="%23F51B2B"/%3E%3Ccircle cx="16" cy="12" r="4" fill="white"/%3E%3C/svg%3E',
+            iconSize: [32, 40],
+            iconAnchor: [16, 40],
+            popupAnchor: [0, -40],
+          }),
+        }).addTo(mapRef.current)
+
+        itaperunaMarker.bindPopup('<div style="font-family: system-ui; padding: 8px;"><h3 style="margin: 0 0 8px 0; font-weight: bold; color: #101418;">Itaperuna - RJ</h3><p style="margin: 0; color: #5B6470; font-size: 12px;">Destaque especial</p></div>')
+
 
         marcadores.forEach((data) => {
           const municipio = buscarPorNome(data.cidade)
@@ -196,8 +210,8 @@ export default function Mapa() {
           </div>
 
           <div className="flex-1 flex flex-col md:flex-row gap-4 p-4 min-h-0 overflow-hidden">
-            {/* Mapa */}
-            <div className="flex-1 rounded-lg border border-giro-borda overflow-hidden flex flex-col">
+            {/* Mapa - Altura aumentada */}
+            <div className="flex-1 rounded-lg border border-giro-borda overflow-hidden flex flex-col min-h-screen md:min-h-0">
               {loading ? (
                 <div className="w-full flex-1 flex items-center justify-center bg-giro-claro">
                   <Loader className="animate-spin text-giro-vermelho" size={32} />
@@ -211,7 +225,7 @@ export default function Mapa() {
             </div>
 
             {/* Panel de Info */}
-            <div className="md:w-80 bg-giro-claro rounded-lg p-4 border border-giro-borda overflow-y-auto h-96 md:h-auto flex-shrink-0">
+            <div className="md:w-80 bg-giro-claro rounded-lg p-4 border border-giro-borda overflow-y-auto md:max-h-screen flex-shrink-0">
               <h2 className="font-bold text-giro-grafite mb-4">Legenda</h2>
 
               <div className="space-y-3 mb-6">

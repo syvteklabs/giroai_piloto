@@ -18,8 +18,17 @@ export const municipiosNoroeste: Record<string, Municipio> = {
   'alecrim': { nome: 'Alecrim', lat: -27.857, lng: -54.664 },
 }
 
+export const municipiosRioDeJaneiro: Record<string, Municipio> = {
+  'itaperuna': { nome: 'Itaperuna', lat: -20.27, lng: -41.66 },
+  'santo-antonio-de-padua': { nome: 'Santo Antônio de Pádua', lat: -21.55, lng: -42.20 },
+  'bom-jesus-do-itabapoana': { nome: 'Bom Jesus do Itabapoana', lat: -21.14, lng: -41.65 },
+  'varre-sai': { nome: 'Varre-Sai', lat: -20.74, lng: -41.88 },
+  'niteroi': { nome: 'Niterói', lat: -22.88, lng: -43.10 },
+  'rio-de-janeiro': { nome: 'Rio de Janeiro', lat: -22.91, lng: -43.17 },
+}
+
 export function getNomeMunicipio(slug: string): Municipio | undefined {
-  return municipiosNoroeste[slug] || buscarPorNome(slug)
+  return municipiosNoroeste[slug] || municipiosRioDeJaneiro[slug] || buscarPorNome(slug)
 }
 
 export function buscarPorNome(nome: string): Municipio | undefined {
@@ -29,5 +38,5 @@ export function buscarPorNome(nome: string): Municipio | undefined {
     .replace(/[̀-ͯ]/g, '')
     .replace(/\s+/g, '-')
 
-  return municipiosNoroeste[slug]
+  return municipiosNoroeste[slug] || municipiosRioDeJaneiro[slug]
 }
