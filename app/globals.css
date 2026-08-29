@@ -19,6 +19,10 @@ body {
   line-height: 1.6;
 }
 
+a {
+  text-decoration: none;
+}
+
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
