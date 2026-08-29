@@ -118,27 +118,46 @@ export default function Mapa() {
         }
 
         // Focar no Rio de Janeiro: [-22.5, -43.5] com zoom 8
-        mapRef.current = L.map(containerRef.current!).setView([-22.5, -43.5], 8)
+        mapRef.current = L.map(containerRef.current!, {
+          zoomControl: true,
+          attributionControl: false,
+        }).setView([-22.5, -43.5], 8)
 
+        // Definir bounds do estado do Rio de Janeiro (recorte visual)
+        const rjBounds = L.latLngBounds(
+          [-20.75, -41.0], // NE - Itaperuna region
+          [-23.5, -48.5]   // SW - Angra dos Reis region
+        )
+        mapRef.current.setMaxBounds(rjBounds)
+        mapRef.current.on('drag', () => {
+          mapRef.current.panInsideBounds(rjBounds, { animate: false })
+        })
+
+        // TileLayer com estilo minimalista
         L.tileLayer(
           'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
           {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 19,
+            attribution: 'OpenStreetMap',
+            maxZoom: 18,
+            minZoom: 7,
+            opacity: 0.95,
           }
         ).addTo(mapRef.current)
 
-        // Adicionar marcador especial para Itaperuna
+        // Marcador especial para Itaperuna (ícone refinado)
         const itaperunaMarker = L.marker([-20.27, -41.66], {
           icon: L.icon({
-            iconUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40"%3E%3Cpath d="M16 0C9.4 0 4 5.4 4 12c0 10 12 28 12 28s12-18 12-28c0-6.6-5.4-12-12-12z" fill="%23F51B2B"/%3E%3Ccircle cx="16" cy="12" r="4" fill="white"/%3E%3C/svg%3E',
-            iconSize: [32, 40],
-            iconAnchor: [16, 40],
-            popupAnchor: [0, -40],
+            iconUrl: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 48"%3E%3Cdefs%3E%3Cfilter id="shadow"%3E%3CfeDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/%3E%3C/filter%3E%3C/defs%3E%3Cpath d="M20 0C11.7 0 5 6.7 5 15c0 12 15 33 15 33s15-21 15-33c0-8.3-6.7-15-15-15z" fill="%23F51B2B" filter="url(%23shadow)"/%3E%3Ccircle cx="20" cy="15" r="5" fill="white"/%3E%3C/svg%3E',
+            iconSize: [40, 48],
+            iconAnchor: [20, 48],
+            popupAnchor: [0, -48],
           }),
         }).addTo(mapRef.current)
 
-        itaperunaMarker.bindPopup('<div style="font-family: system-ui; padding: 8px;"><h3 style="margin: 0 0 8px 0; font-weight: bold; color: #101418;">Itaperuna - RJ</h3><p style="margin: 0; color: #5B6470; font-size: 12px;">Destaque especial</p></div>')
+        itaperunaMarker.bindPopup(
+          '<div style="font-family: system-ui; padding: 10px; min-width: 180px;"><h3 style="margin: 0 0 6px 0; font-weight: 700; color: #F51B2B; font-size: 14px;">Itaperuna</h3><p style="margin: 0; color: #5B6470; font-size: 12px;">Rio de Janeiro</p></div>',
+          { className: 'giro-popup' }
+        )
 
 
         marcadores.forEach((data) => {
@@ -210,8 +229,8 @@ export default function Mapa() {
           </div>
 
           <div className="flex-1 flex flex-col md:flex-row gap-4 p-4 min-h-0 overflow-hidden">
-            {/* Mapa - Altura aumentada */}
-            <div className="flex-1 rounded-lg border border-giro-borda overflow-hidden flex flex-col min-h-screen md:min-h-0">
+            {/* Mapa */}
+            <div className="flex-1 rounded-lg border border-giro-borda overflow-hidden flex flex-col shadow-md h-96 md:h-auto">
               {loading ? (
                 <div className="w-full flex-1 flex items-center justify-center bg-giro-claro">
                   <Loader className="animate-spin text-giro-vermelho" size={32} />

@@ -32,3 +32,39 @@ body {
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* Leaflet Map Styling */
+.leaflet-popup-content-wrapper {
+  background: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(16, 20, 24, 0.15) !important;
+  border-radius: 0.375rem !important;
+  border: 1px solid #E5E7EB !important;
+}
+
+.leaflet-popup-tip {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E7EB !important;
+}
+
+.leaflet-popup-close-button {
+  color: #5B6470 !important;
+  font-size: 20px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #101418 !important;
+}
+
+.giro-popup .leaflet-popup-content {
+  margin: 0 !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.8) !important;
+  font-size: 11px !important;
+}
+
+.leaflet-control-zoom {
+  box-shadow: 0 1px 3px rgba(16, 20, 24, 0.1) !important;
+}
